@@ -5,48 +5,39 @@ public class Job
     private int fee;
     private String category;
 
-    public Job()
-    {
+    public Job(){
         
     }
 
-    public int getId()
-    {
-        return id;
+    public int getId(){
+        return 0;
     }
     
-    public String getName()
-    {
-        return name;
+    public String getName(){
+        return "oop";
     }
     
-    public int getFee()
-    {
-        return fee;
+    public int getFee(){
+        return 0;
     }
     
-    public String getCategory()
-    {
-        return category;
+    public String getCategory(){
+        return "oop";
     }
     
-    public void setId(int id)
-    {
+    public void setId(int id){
         
     }
     
-    public void setName(String name)
-    {
+    public void setName(String name){
         
     }
     
-    public void setFee(int fee)
-    {
+    public void setFee(int fee){
         
     }
     
-    public void setCategory(String category)
-    {
+    public void setCategory(String category){
         
     }  
 }

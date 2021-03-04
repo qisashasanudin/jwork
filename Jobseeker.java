@@ -6,57 +6,47 @@ public class Jobseeker
     private String password;
     private String joinDate;
 
-    public Jobseeker()
-    {
+    public Jobseeker(){
         
     }
 
-    public int getId()
-    {
-        return id;
+    public int getId(){
+        return 0;
     }
     
-    public String getName()
-    {
-        return name;
+    public String getName(){
+        return "oop";
     }
     
-    public String getEmail()
-    {
-        return email;
+    public String getEmail(){
+        return "oop";
     }
     
-    public String getPassword()
-    {
-        return password;
+    public String getPassword(){
+        return "oop";
     }
     
-    public String getJoinDate()
-    {
-        return joinDate;
+    public String getJoinDate(){
+        return "oop";
     }
     
-    public void setId(int id)
-    {
+    public void setId(int id){
         
     }
     
-    public void setName(String name)
-    {
+    public void setName(String name){
         
     }
     
-    public void setEmail(String email)
-    {
+    public void setEmail(String email){
         
     }
     
-    public void setPassword(String password)
-    {
+    public void setPassword(String password){
+        
     }
     
-    public void setJoinDate(String joinDate)
-    {
+    public void setJoinDate(String joinDate){
         
     }    
 }
