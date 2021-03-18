@@ -8,7 +8,7 @@
 public class DatabaseJob {
     // instance variable
     private String[] listJob;
-    
+
     /*
      * Constructor untuk object dari class DatabaseJob
      */
@@ -16,24 +16,37 @@ public class DatabaseJob {
         this.listJob = listJob;
     }
 
+    /**
+     * method addJob, berfungsi untuk menambah job baru
+     *
+     * @param job
+     */
     public boolean addJob(Job job) {
         return false;
     }
 
+    /**
+     * method removeJob, berfungsi untuk menghapus job yang sudah ada
+     *
+     * @param job
+     */
     public boolean removeJob(Job job) {
         return false;
     }
 
+    /**
+     * method getJob, berfungsi sebagai getter
+     */
     public Job getJob() {
         return null;
     }
 
+    /**
+     * method getListJob, berfungsi sebagai getter untuk mengambil value listJob
+     *
+     * @return listJob
+     */
     public String[] getListJob() {
         return listJob;
     }
-
-    public void setListJob(String[] listJob) {
-        this.listJob = listJob;
-    }
-
 }
