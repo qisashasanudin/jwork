@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=DatabaseJob
+comment1.params=listJob
+comment1.target=DatabaseJob(java.lang.String[])
+comment2.params=job
+comment2.target=boolean\ addJob(Job)
+comment3.params=job
+comment3.target=boolean\ removeJob(Job)
+comment4.params=
+comment4.target=java.lang.String[]\ getListJob()
+comment5.params=listJob
+comment5.target=void\ setListJob(java.lang.String[])
+numComments=6
