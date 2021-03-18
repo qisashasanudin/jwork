@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=Location
+comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
 comment1.params=province\ city\ description
 comment1.target=Location(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ Location\r\n
 comment2.params=
 comment2.target=java.lang.String\ getProvince()
 comment3.params=
