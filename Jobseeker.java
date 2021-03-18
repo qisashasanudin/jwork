@@ -54,6 +54,6 @@ public class Jobseeker {
     }
 
     public void printData() {
-
+        System.out.println("nama Jobseeker: " + name);
     }
 }
