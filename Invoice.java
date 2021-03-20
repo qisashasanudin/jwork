@@ -119,6 +119,6 @@ public class Invoice {
      * method printData, berfungsi untuk mencetak instance variable ke layar
      */
     public void printData() {
-
+        System.out.println("Jumlah Harga: " + totalFee);
     }
 }

@@ -119,6 +119,6 @@ public class Job {
      * method printData, berfungsi untuk mencetak instance variable ke layar
      */
     public void printData() {
-
+        System.out.println("nama Job: " + name);
     }
 }

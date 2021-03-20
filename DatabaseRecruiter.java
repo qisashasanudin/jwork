@@ -1,19 +1,19 @@
 /**
  * Praktikum OOP - Program "JWork"
- * class DatabaseJob: berfungsi untuk meng-generate object yang berisi list pekerjaan yang ada
+ * class Recruiter: berfungsi untuk meng-generate object yang berisi list recruiter yang ada
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021
  */
 
-public class DatabaseJob {
+public class DatabaseRecruiter {
     // instance variable
-    private String[] listJob;
+    private String[] listRecruiter;
 
     /*
      * Constructor untuk object dari class DatabaseJob
      */
-    public DatabaseJob() {
+    public DatabaseRecruiter() {
         
     }
 
@@ -22,7 +22,7 @@ public class DatabaseJob {
      *
      * @param job
      */
-    public boolean addJob(Job job) {
+    public boolean addRecruiter(Recruiter recruiter) {
         return false;
     }
 
@@ -31,14 +31,14 @@ public class DatabaseJob {
      *
      * @param job
      */
-    public boolean removeJob(Job job) {
+    public boolean removeRecruiter(Recruiter recruiter) {
         return false;
     }
 
     /**
      * method getJob, berfungsi sebagai getter
      */
-    public Job getJob() {
+    public Recruiter getRecruiter() {
         return null;
     }
 
@@ -47,7 +47,7 @@ public class DatabaseJob {
      *
      * @return listJob
      */
-    public String[] getListJob() {
-        return listJob;
+    public String[] getListRecruiter() {
+        return listRecruiter;
     }
 }
