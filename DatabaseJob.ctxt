@@ -1,17 +1,19 @@
 #BlueJ class context
 comment0.target=DatabaseJob
-comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
-comment1.params=listJob
-comment1.target=DatabaseJob(java.lang.String[])
+comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\ class\ Recruiter\:\ berfungsi\ untuk\ meng-generate\ object\ yang\ berisi\ list\ pekerjaan\ yang\ ada\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
+comment1.params=
+comment1.target=DatabaseJob()
 comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ DatabaseJob\r\n
 comment2.params=job
 comment2.target=boolean\ addJob(Job)
+comment2.text=\r\n\ method\ addJob,\ berfungsi\ untuk\ menambah\ job\ baru\r\n\r\n\ @param\ job\r\n
 comment3.params=job
 comment3.target=boolean\ removeJob(Job)
+comment3.text=\r\n\ method\ removeJob,\ berfungsi\ untuk\ menghapus\ job\ yang\ sudah\ ada\r\n\r\n\ @param\ job\r\n
 comment4.params=
 comment4.target=Job\ getJob()
+comment4.text=\r\n\ method\ getJob,\ berfungsi\ sebagai\ getter\r\n
 comment5.params=
 comment5.target=java.lang.String[]\ getListJob()
-comment6.params=listJob
-comment6.target=void\ setListJob(java.lang.String[])
-numComments=7
+comment5.text=\r\n\ method\ getListJob,\ berfungsi\ sebagai\ getter\ untuk\ mengambil\ value\ listJob\r\n\r\n\ @return\ listJob\r\n
+numComments=6

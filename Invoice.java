@@ -1,5 +1,6 @@
 /**
  * Praktikum OOP - Program "JWork"
+ * class Invoice: berfungsi untuk meng-generate object yang merepresentasikan bukti pengiriman gaji
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021

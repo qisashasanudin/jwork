@@ -1,5 +1,6 @@
 /**
  * Praktikum OOP - Program "JWork"
+ * class Recruiter: berfungsi untuk meng-generate object yang berisi list pekerjaan yang ada
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021
@@ -12,8 +13,8 @@ public class DatabaseJob {
     /*
      * Constructor untuk object dari class DatabaseJob
      */
-    public DatabaseJob(String[] listJob) {
-        this.listJob = listJob;
+    public DatabaseJob() {
+        
     }
 
     /**

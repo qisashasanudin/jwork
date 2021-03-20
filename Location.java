@@ -1,5 +1,6 @@
 /**
  * Praktikum OOP - Program "JWork"
+ * class Location: berfungsi untuk meng-generate object yang merepresentasikan lokasi tertentu
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021

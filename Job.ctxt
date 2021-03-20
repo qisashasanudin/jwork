@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Job
-comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
+comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\ class\ Recruiter\:\ berfungsi\ untuk\ meng-generate\ object\ yang\ merepresentasikan\ sebuah\ pekerjaan\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
 comment1.params=id\ name\ fee\ category\ recruiter
 comment1.target=Job(int,\ java.lang.String,\ int,\ java.lang.String,\ Recruiter)
 comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ Job\r\n

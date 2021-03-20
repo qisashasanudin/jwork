@@ -1,6 +1,7 @@
 
 /**
  * Praktikum OOP - Program "JWork"
+ * class Jobseeker: berfungsi untuk meng-generate object yang merepresentasikan pencari pekerjaan / karyawan
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021
