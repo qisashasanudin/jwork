@@ -7,10 +7,10 @@ public class JWork {
         Jobseeker jobseeker1 = new Jobseeker(2, "Andi", "andi@gmail.com", "sedih123", "20 Maret 2021");
         Invoice invoice1 = new Invoice(3, 2, "18 Maret 2021", 5000000, jobseeker1);
         
-        recruiter1.printData();
+        System.out.println(recruiter1.getName());
         recruiter1.setName("Hary Ridart");
-        recruiter1.printData();
+        System.out.println(recruiter1.getName());
         
-        job1.printData();
+        System.out.println(job1.getName());
         }
 }

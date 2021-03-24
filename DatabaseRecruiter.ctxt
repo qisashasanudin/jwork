@@ -1,19 +1,19 @@
 #BlueJ class context
 comment0.target=DatabaseRecruiter
-comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\ class\ Recruiter\:\ berfungsi\ untuk\ meng-generate\ object\ yang\ berisi\ list\ recruiter\ yang\ ada\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
+comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\ class\ Recruiter\:\ berfungsi\ untuk\r\n\ meng-generate\ object\ yang\ berisi\ list\ recruiter\ yang\ ada\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
 comment1.params=
 comment1.target=DatabaseRecruiter()
-comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ DatabaseJob\r\n
+comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ DatabaseRecruiter\r\n
 comment2.params=recruiter
 comment2.target=boolean\ addRecruiter(Recruiter)
-comment2.text=\r\n\ method\ addJob,\ berfungsi\ untuk\ menambah\ job\ baru\r\n\r\n\ @param\ job\r\n
+comment2.text=\r\n\ method\ addRecruiter,\ berfungsi\ untuk\ menambah\ recruiter\ baru\r\n\r\n\ @param\ recruiter\r\n
 comment3.params=recruiter
 comment3.target=boolean\ removeRecruiter(Recruiter)
-comment3.text=\r\n\ method\ removeJob,\ berfungsi\ untuk\ menghapus\ job\ yang\ sudah\ ada\r\n\r\n\ @param\ job\r\n
+comment3.text=\r\n\ method\ removeRecruiter,\ berfungsi\ untuk\ menghapus\ recruiter\ yang\ sudah\ ada\r\n\r\n\ @param\ recruiter\r\n
 comment4.params=
 comment4.target=Recruiter\ getRecruiter()
-comment4.text=\r\n\ method\ getJob,\ berfungsi\ sebagai\ getter\r\n
+comment4.text=\r\n\ method\ getRecruiter,\ berfungsi\ sebagai\ getter\r\n
 comment5.params=
 comment5.target=java.lang.String[]\ getListRecruiter()
-comment5.text=\r\n\ method\ getListJob,\ berfungsi\ sebagai\ getter\ untuk\ mengambil\ value\ listJob\r\n\r\n\ @return\ listJob\r\n
+comment5.text=\r\n\ method\ getListRecruiter,\ berfungsi\ sebagai\ getter\ untuk\ mengambil\ value\r\n\ listRecruiter\r\n\r\n\ @return\ listRecruiter\r\n
 numComments=6
