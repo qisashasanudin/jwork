@@ -10,14 +10,14 @@ public class Job {
     // instance variable
     private int id;
     private String name;
-    private int fee;
-    private String category;
     private Recruiter recruiter;
+    private int fee;
+    private JobCategory category;
 
     /*
      * Constructor untuk object dari class Job
      */
-    public Job(int id, String name, int fee, String category, Recruiter recruiter) {
+    public Job(int id, String name, int fee, JobCategory category, Recruiter recruiter) {
         this.id = id;
         this.name = name;
         this.fee = fee;
@@ -57,7 +57,7 @@ public class Job {
      *
      * @return category
      */
-    public String getCategory() {
+    public JobCategory getCategory() {
         return category;
     }
 
@@ -102,7 +102,7 @@ public class Job {
      *
      * @param category
      */
-    public void setCategory(String category) {
+    public void setCategory(JobCategory category) {
         this.category = category;
     }
 
@@ -119,6 +119,11 @@ public class Job {
      * method printData, berfungsi untuk mencetak instance variable ke layar
      */
     public void printData() {
-        System.out.println("nama Job: " + name);
+        System.out.println("==================== JOB ====================");
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Recruiter: " + recruiter.getName());
+        System.out.println("Fee: " + fee);
+        System.out.println("Category: " + category.toString());
     }
 }

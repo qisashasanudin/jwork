@@ -8,21 +8,21 @@
 
 public class DatabaseJob {
     // instance variable
-    private String[] listJob;
+    private static String[] listJob;
 
     /*
      * Constructor untuk object dari class DatabaseJob
      */
-    public DatabaseJob() {
+    // public DatabaseJob() {
         
-    }
+    // }
 
     /**
      * method addJob, berfungsi untuk menambah job baru
      *
      * @param job
      */
-    public boolean addJob(Job job) {
+    public static boolean addJob(Job job) {
         return false;
     }
 
@@ -31,14 +31,14 @@ public class DatabaseJob {
      *
      * @param job
      */
-    public boolean removeJob(Job job) {
+    public static boolean removeJob(Job job) {
         return false;
     }
 
     /**
      * method getJob, berfungsi sebagai getter
      */
-    public Job getJob() {
+    public static Job getJob() {
         return null;
     }
 
@@ -47,7 +47,7 @@ public class DatabaseJob {
      *
      * @return listJob
      */
-    public String[] getListJob() {
+    public static String[] getListJob() {
         return listJob;
     }
 }

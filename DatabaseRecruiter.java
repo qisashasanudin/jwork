@@ -8,21 +8,21 @@
 
 public class DatabaseRecruiter {
     // instance variable
-    private String[] listRecruiter;
+    private static String[] listRecruiter;
 
     /*
      * Constructor untuk object dari class DatabaseRecruiter
      */
-    public DatabaseRecruiter() {
+    // public DatabaseRecruiter() {
 
-    }
+    // }
 
     /**
      * method addRecruiter, berfungsi untuk menambah recruiter baru
      *
      * @param recruiter
      */
-    public boolean addRecruiter(Recruiter recruiter) {
+    public static boolean addRecruiter(Recruiter recruiter) {
         return false;
     }
 
@@ -31,14 +31,14 @@ public class DatabaseRecruiter {
      *
      * @param recruiter
      */
-    public boolean removeRecruiter(Recruiter recruiter) {
+    public static boolean removeRecruiter(Recruiter recruiter) {
         return false;
     }
 
     /**
      * method getRecruiter, berfungsi sebagai getter
      */
-    public Recruiter getRecruiter() {
+    public static Recruiter getRecruiter() {
         return null;
     }
 
@@ -48,7 +48,7 @@ public class DatabaseRecruiter {
      *
      * @return listRecruiter
      */
-    public String[] getListRecruiter() {
+    public static String[] getListRecruiter() {
         return listRecruiter;
     }
 }
