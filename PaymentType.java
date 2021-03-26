@@ -10,13 +10,13 @@ public enum PaymentType
     BankPayment("Bank Payment"), 
     EwalletPayment("E-Wallet Payment");
     
-    private final String label;
+    private final String type;
     
-    private PaymentType(String label){
-        this.label = label;        
+    private PaymentType(String type){
+        this.type = type;        
     }
     
     public String toString(){
-        return label;
+        return type;
     }
 }

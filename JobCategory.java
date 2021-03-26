@@ -16,13 +16,13 @@ public enum JobCategory
     DataScientist("Data Scientist"), 
     DataAnalyst("Data Analyst");
     
-    private final String label;
+    private final String category;
     
-    private JobCategory(String label){
-        this.label = label;        
+    private JobCategory(String category){
+        this.category = category;        
     }
     
     public String toString(){
-        return label;
+        return category;
     }
 }
