@@ -27,9 +27,9 @@ public class JWork {
 
         // job1.printData();
         
-        // System.out.println(InvoiceStatus.Ongoing.toString());
-        // System.out.println(InvoiceStatus.Finished.toString());
-        // System.out.println(InvoiceStatus.Cancelled.toString());
+        System.out.println(InvoiceStatus.Ongoing.toString());
+        System.out.println(InvoiceStatus.Finished.toString());
+        System.out.println(InvoiceStatus.Cancelled.toString());
         
         invoice1.printData();
     }
