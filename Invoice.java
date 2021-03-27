@@ -13,16 +13,20 @@ public class Invoice {
     private String date;
     private int totalFee;
     private Jobseeker jobseeker;
+    private PaymentType paymentType;
+    private InvoiceStatus status;
 
     /*
      * Constructor untuk object dari class Invoice
      */
-    public Invoice(int id, int idJob, String date, int totalFee, Jobseeker jobseeker) {
+    public Invoice(int id, int idJob, String date, int totalFee, Jobseeker jobseeker, PaymentType paymentType, InvoiceStatus status) {
         this.id = id;
         this.idJob = idJob;
         this.date = date;
         this.totalFee = totalFee;
         this.jobseeker = jobseeker;
+        this.paymentType = paymentType;
+        this.status = status;
     }
 
     /**
@@ -69,6 +73,24 @@ public class Invoice {
     public Jobseeker getJobseeker() {
         return jobseeker;
     }
+    
+    /**
+     * method getPaymentType, berfungsi sebagai getter untuk mengambil value paymentType
+     *
+     * @return paymentType
+     */
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    /**
+     * method getInvoiceStatus, berfungsi sebagai getter untuk mengambil value status
+     *
+     * @return status
+     */
+    public InvoiceStatus getInvoiceStatus() {
+        return status;
+    }
 
     /**
      * method setId, berfungsi sebagai setter untuk mengisi value id
@@ -114,11 +136,35 @@ public class Invoice {
     public void setJobseeker(Jobseeker jobseeker) {
         this.jobseeker = jobseeker;
     }
+    
+    /**
+     * method setPaymentType, berfungsi sebagai setter untuk mengisi value paymentType
+     *
+     * @param paymentType
+     */
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    /**
+     * method setInvoiceStatus, berfungsi sebagai setter untuk mengisi value status
+     *
+     * @param status
+     */
+    public void setInvoiceStatus(InvoiceStatus status) {
+        this.status = status;
+    }
 
     /**
      * method printData, berfungsi untuk mencetak instance variable ke layar
      */
     public void printData() {
-        System.out.println("Jumlah Harga: " + totalFee);
+        System.out.println("==================== INVOICE ====================");
+        System.out.println("ID: " + id);
+        System.out.println("ID Job: " + idJob);
+        System.out.println("Date: " + date);
+        System.out.println("Seeker: " + jobseeker.getName());
+        System.out.println("Fee: " + totalFee);
+        System.out.println("Status: " + status.toString());
     }
 }

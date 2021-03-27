@@ -4,8 +4,8 @@ public class JWork {
         Location location1 = new Location("Jawa Barat", "Sukabumi", "RS Ridogalih");
         Recruiter recruiter1 = new Recruiter(1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com", "0696969696", location1);
         Job job1 = new Job(2, "Developer", 5000000, JobCategory.FrontEnd, recruiter1);
-        Jobseeker jobseeker1 = new Jobseeker(2, "Andi", "andi@gmail.com", "sedih123", "20 Maret 2021");
-        Invoice invoice1 = new Invoice(3, 2, "18 Maret 2021", 5000000, jobseeker1);
+        Jobseeker jobseeker1 = new Jobseeker(2, "Andi", "andi@gmail.com", "sedih123", "27/03/2021");
+        Invoice invoice1 = new Invoice(3, job1.getId(), "27/03/2021", job1.getFee(), jobseeker1, PaymentType.BankPayment, InvoiceStatus.Finished);
 
         // .out.println(recruiter1.getName());
         // recruiter1.setName("Hary Ridart");
@@ -25,6 +25,12 @@ public class JWork {
         // System.out.println(PaymentType.BankPayment.toString());
         // System.out.println(PaymentType.EwalletPayment.toString());
 
-        job1.printData();
+        // job1.printData();
+        
+        // System.out.println(InvoiceStatus.Ongoing.toString());
+        // System.out.println(InvoiceStatus.Finished.toString());
+        // System.out.println(InvoiceStatus.Cancelled.toString());
+        
+        invoice1.printData();
     }
 }
