@@ -13,10 +13,17 @@ public enum InvoiceStatus
     
     private final String status;
     
+    
+    /*
+     * Constructor untuk enumerator InvoiceStatus
+     */
     private InvoiceStatus(String status){
         this.status = status;        
     }
     
+    /**
+     * method toString, berfungsi untuk mengembalikan status dalam bentuk string
+     */
     public String toString(){
         return status;
     }

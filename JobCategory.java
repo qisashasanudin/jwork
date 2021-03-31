@@ -18,10 +18,16 @@ public enum JobCategory
     
     private final String category;
     
+    
+    /*
+     * Constructor untuk enumerator JobCategory
+     */
     private JobCategory(String category){
         this.category = category;        
     }
-    
+    /**
+     * method toString, berfungsi untuk mengembalikan category dalam bentuk string
+     */
     public String toString(){
         return category;
     }
