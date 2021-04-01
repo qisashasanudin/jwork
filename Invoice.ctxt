@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Invoice
 comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\ class\ Invoice\:\ berfungsi\ untuk\ meng-generate\ object\ yang\ merepresentasikan\ bukti\ pengiriman\ gaji\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
-comment1.params=id\ idJob\ date\ totalFee\ jobseeker\ paymentType\ status
+comment1.params=id\ idJob\ date\ totalFee\ jobseeker\ paymentType\ invoiceStatus
 comment1.target=Invoice(int,\ int,\ java.lang.String,\ int,\ Jobseeker,\ PaymentType,\ InvoiceStatus)
 comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ Invoice\r\n
 comment10.params=idJob
@@ -21,7 +21,7 @@ comment14.target=void\ setPaymentType(PaymentType)
 comment14.text=\r\n\ method\ setPaymentType,\ berfungsi\ sebagai\ setter\ untuk\ mengisi\ value\ paymentType\r\n\r\n\ @param\ paymentType\r\n
 comment15.params=status
 comment15.target=void\ setInvoiceStatus(InvoiceStatus)
-comment15.text=\r\n\ method\ setInvoiceStatus,\ berfungsi\ sebagai\ setter\ untuk\ mengisi\ value\ status\r\n\r\n\ @param\ status\r\n
+comment15.text=\r\n\ method\ setInvoiceStatus,\ berfungsi\ sebagai\ setter\ untuk\ mengisi\ value\ invoiceStatus\r\n\r\n\ @param\ invoiceStatus\r\n
 comment16.params=
 comment16.target=void\ printData()
 comment16.text=\r\n\ method\ printData,\ berfungsi\ untuk\ mencetak\ instance\ variable\ ke\ layar\r\n
@@ -45,7 +45,7 @@ comment7.target=PaymentType\ getPaymentType()
 comment7.text=\r\n\ method\ getPaymentType,\ berfungsi\ sebagai\ getter\ untuk\ mengambil\ value\ paymentType\r\n\r\n\ @return\ paymentType\r\n
 comment8.params=
 comment8.target=InvoiceStatus\ getInvoiceStatus()
-comment8.text=\r\n\ method\ getInvoiceStatus,\ berfungsi\ sebagai\ getter\ untuk\ mengambil\ value\ status\r\n\r\n\ @return\ status\r\n
+comment8.text=\r\n\ method\ getInvoiceStatus,\ berfungsi\ sebagai\ getter\ untuk\ mengambil\ value\ invoiceStatus\r\n\r\n\ @return\ invoiceStatus\r\n
 comment9.params=id
 comment9.target=void\ setId(int)
 comment9.text=\r\n\ method\ setId,\ berfungsi\ sebagai\ setter\ untuk\ mengisi\ value\ id\r\n\r\n\ @param\ id\r\n

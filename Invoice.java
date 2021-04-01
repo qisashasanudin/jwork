@@ -14,19 +14,19 @@ public class Invoice {
     private int totalFee;
     private Jobseeker jobseeker;
     private PaymentType paymentType;
-    private InvoiceStatus status;
+    private InvoiceStatus invoiceStatus;
 
     /*
      * Constructor untuk object dari class Invoice
      */
-    public Invoice(int id, int idJob, String date, int totalFee, Jobseeker jobseeker, PaymentType paymentType, InvoiceStatus status) {
+    public Invoice(int id, int idJob, String date, int totalFee, Jobseeker jobseeker, PaymentType paymentType, InvoiceStatus invoiceStatus) {
         this.id = id;
         this.idJob = idJob;
         this.date = date;
         this.totalFee = totalFee;
         this.jobseeker = jobseeker;
         this.paymentType = paymentType;
-        this.status = status;
+        this.invoiceStatus = invoiceStatus;
     }
 
     /**
@@ -84,12 +84,12 @@ public class Invoice {
     }
 
     /**
-     * method getInvoiceStatus, berfungsi sebagai getter untuk mengambil value status
+     * method getInvoiceStatus, berfungsi sebagai getter untuk mengambil value invoiceStatus
      *
-     * @return status
+     * @return invoiceStatus
      */
     public InvoiceStatus getInvoiceStatus() {
-        return status;
+        return invoiceStatus;
     }
 
     /**
@@ -147,12 +147,12 @@ public class Invoice {
     }
 
     /**
-     * method setInvoiceStatus, berfungsi sebagai setter untuk mengisi value status
+     * method setInvoiceStatus, berfungsi sebagai setter untuk mengisi value invoiceStatus
      *
-     * @param status
+     * @param invoiceStatus
      */
     public void setInvoiceStatus(InvoiceStatus status) {
-        this.status = status;
+        this.invoiceStatus = invoiceStatus;
     }
 
     /**
@@ -165,6 +165,6 @@ public class Invoice {
         System.out.println("Date: " + date);
         System.out.println("Seeker: " + jobseeker.getName());
         System.out.println("Fee: " + totalFee);
-        System.out.println("Status: " + status.toString());
+        System.out.println("Status: " + invoiceStatus.toString());
     }
 }
