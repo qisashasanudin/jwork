@@ -25,46 +25,100 @@ public class Bonus
         this.active = active;
     }
 
+    /**
+     * method getId, berfungsi sebagai getter untuk mengambil value id
+     *
+     * @return id
+     */
     public int getId(){
         return id;
     }
     
-    public void setId(int id){
-        this.id = id;
-    }
-    
+    /**
+     * method getReferralCode, berfungsi sebagai getter untuk mengambil value referralCode
+     *
+     * @return referralCode
+     */
     public String getReferralCode(){
         return referralCode;
     }
     
-    public void setReferralCode(String referralCode){
-        this.referralCode = referralCode;
-    }
-    
+    /**
+     * method getExtraFee, berfungsi sebagai getter untuk mengambil value extraFee
+     *
+     * @return extraFee
+     */
     public int getExtraFee(){
         return extraFee;
     }
     
-    public void setExtraFee(int extraFee){
-        this.extraFee = extraFee;
-    }
-    
+    /**
+     * method getMinTotalFee, berfungsi sebagai getter untuk mengambil value minTotalFee
+     *
+     * @return minTotalFee
+     */
     public int getMinTotalFee(){
         return minTotalFee;
     }
     
+    /**
+     * method getActive, berfungsi sebagai getter untuk mengambil value active
+     *
+     * @return active
+     */
+    public boolean getActive(){
+        return active;
+    }
+
+    /**
+     * method setId, berfungsi sebagai setter untuk mengisi value id
+     *
+     * @param id
+     */    
+    public void setId(int id){
+        this.id = id;
+    }
+    
+    /**
+     * method setReferralCode, berfungsi sebagai setter untuk mengisi value referralCode
+     *
+     * @param referralCode
+     */ 
+    public void setReferralCode(String referralCode){
+        this.referralCode = referralCode;
+    }
+    
+    /**
+     * method setExtraFee, berfungsi sebagai setter untuk mengisi value extraFee
+     *
+     * @param extraFee
+     */ 
+    public void setExtraFee(int extraFee){
+        this.extraFee = extraFee;
+    }
+    
+    /**
+     * method setMinTotalFee, berfungsi sebagai setter untuk mengisi value minTotalFee
+     *
+     * @param minTotalFee
+     */ 
     public void setMinTotalFee(int minTotalFee){
         this.minTotalFee = minTotalFee;
     }
     
-    public boolean getActive(){
-        return active;
-    }
-    
+    /**
+     * method setActive, berfungsi sebagai setter untuk mengisi value active
+     *
+     * @param active
+     */ 
     public void setActive(boolean active){
         this.active = active;
     }
-    
+
+    /**
+     * method printData, berfungsi untuk mencetak instance variable ke layar
+     */
+
     public void printData(){
         System.out.println(id);
         System.out.println(referralCode);
