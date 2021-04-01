@@ -12,7 +12,7 @@ public class Location {
     private String city;
     private String description;
 
-    /*
+    /**
      * Constructor untuk object dari class Location
      */
     public Location(String province, String city, String description) {

@@ -6,26 +6,23 @@
  * @version 18-03-2021
  */
 
-public class Invoice {
+public abstract class Invoice {
     // instance variable
     private int id;
-    private int idJob;
+    private Job job;
     private String date;
-    private int totalFee;
+    protected int totalFee;
     private Jobseeker jobseeker;
-    private PaymentType paymentType;
     private InvoiceStatus invoiceStatus;
 
-    /*
+    /**
      * Constructor untuk object dari class Invoice
      */
-    public Invoice(int id, int idJob, String date, int totalFee, Jobseeker jobseeker, PaymentType paymentType, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
         this.id = id;
-        this.idJob = idJob;
+        this.job = job;
         this.date = date;
-        this.totalFee = totalFee;
         this.jobseeker = jobseeker;
-        this.paymentType = paymentType;
         this.invoiceStatus = invoiceStatus;
     }
 
@@ -39,12 +36,12 @@ public class Invoice {
     }
 
     /**
-     * method getIdJob, berfungsi sebagai getter untuk mengambil value idJob
+     * method getJob, berfungsi sebagai getter untuk mengambil value job
      *
-     * @return idJob
+     * @return job
      */
-    public int getIdJob() {
-        return idJob;
+    public Job getJob() {
+        return job;
     }
 
     /**
@@ -77,11 +74,8 @@ public class Invoice {
     /**
      * method getPaymentType, berfungsi sebagai getter untuk mengambil value paymentType
      *
-     * @return paymentType
      */
-    public PaymentType getPaymentType() {
-        return paymentType;
-    }
+    public abstract PaymentType getPaymentType();
 
     /**
      * method getInvoiceStatus, berfungsi sebagai getter untuk mengambil value invoiceStatus
@@ -102,12 +96,12 @@ public class Invoice {
     }
 
     /**
-     * method setIdJob, berfungsi sebagai setter untuk mengisi value idJob
+     * method setJob, berfungsi sebagai setter untuk mengisi value job
      *
-     * @param idJob
+     * @param job
      */
-    public void setIdJob(int idJob) {
-        this.idJob = idJob;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     /**
@@ -122,11 +116,8 @@ public class Invoice {
     /**
      * method setTotalFee, berfungsi sebagai setter untuk mengisi value totalFee
      *
-     * @param totalFee
      */
-    public void setTotalFee(int totalFee) {
-        this.totalFee = totalFee;
-    }
+    public abstract void setTotalFee();
 
     /**
      * method setJobseeker, berfungsi sebagai setter untuk mengisi value jobseeker
@@ -135,15 +126,6 @@ public class Invoice {
      */
     public void setJobseeker(Jobseeker jobseeker) {
         this.jobseeker = jobseeker;
-    }
-    
-    /**
-     * method setPaymentType, berfungsi sebagai setter untuk mengisi value paymentType
-     *
-     * @param paymentType
-     */
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
     }
 
     /**
@@ -158,13 +140,5 @@ public class Invoice {
     /**
      * method printData, berfungsi untuk mencetak instance variable ke layar
      */
-    public void printData() {
-        System.out.println("==================== INVOICE ====================");
-        System.out.println("ID: " + id);
-        System.out.println("ID Job: " + idJob);
-        System.out.println("Date: " + date);
-        System.out.println("Seeker: " + jobseeker.getName());
-        System.out.println("Fee: " + totalFee);
-        System.out.println("Status: " + invoiceStatus.toString());
-    }
+    public abstract void printData();
 }

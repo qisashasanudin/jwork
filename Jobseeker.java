@@ -15,7 +15,7 @@ public class Jobseeker {
     private String password;
     private String joinDate;
 
-    /*
+    /**
      * Constructor untuk object dari class Jobseeker
      */
     public Jobseeker(int id, String name, String email, String password, String joinDate) {

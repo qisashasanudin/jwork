@@ -12,7 +12,7 @@ public enum PaymentType
     
     private final String type;
     
-    /*
+    /**
      * Constructor untuk enumerator PaymentType
      */
     private PaymentType(String type){

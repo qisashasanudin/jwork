@@ -14,7 +14,7 @@ public enum InvoiceStatus
     private final String status;
     
     
-    /*
+    /**
      * Constructor untuk enumerator InvoiceStatus
      */
     private InvoiceStatus(String status){

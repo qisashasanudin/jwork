@@ -14,7 +14,7 @@ public class Job {
     private int fee;
     private JobCategory category;
 
-    /*
+    /**
      * Constructor untuk object dari class Job
      */
     public Job(int id, String name, int fee, JobCategory category, Recruiter recruiter) {

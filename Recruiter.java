@@ -14,7 +14,7 @@ public class Recruiter {
     private String phoneNumber;
     private Location location;
 
-    /*
+    /**
      * Constructor untuk object dari class Recruiter
      */
     public Recruiter(int id, String name, String email, String phoneNumber, Location location) {

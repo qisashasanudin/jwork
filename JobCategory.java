@@ -19,7 +19,7 @@ public enum JobCategory
     private final String category;
     
     
-    /*
+    /**
      * Constructor untuk enumerator JobCategory
      */
     private JobCategory(String category){
