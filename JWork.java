@@ -17,6 +17,9 @@ public class JWork {
         EwalletPayment invoice2 = new EwalletPayment(2, job1, "25 April 2021", jobseeker2, bonus1, InvoiceStatus.Finished);
         EwalletPayment invoice3 = new EwalletPayment(3, job2, "25 April 2021", jobseeker3, bonus1, InvoiceStatus.Finished);
         
+        BankPayment invoice4 = new BankPayment(4, job1, "25 April 2021", jobseeker1, InvoiceStatus.Finished);
+        BankPayment invoice5 = new BankPayment(5, job2, "25 April 2021", jobseeker2, InvoiceStatus.Finished, 5000);
+        
         // .out.println(recruiter1.getName());
         // recruiter1.setName("Hary Ridart");
         // System.out.println(recruiter1.getName());
@@ -41,11 +44,11 @@ public class JWork {
         // System.out.println(InvoiceStatus.Finished.toString());
         // System.out.println(InvoiceStatus.Cancelled.toString());
         
-        invoice1.setTotalFee();
-        invoice2.setTotalFee();
-        invoice3.setTotalFee();
-        invoice1.printData();
-        invoice2.printData();
-        invoice3.printData();
+        // invoice1.printData();
+        // invoice2.printData();
+        // invoice3.printData();
+        
+        invoice4.printData();
+        invoice5.printData();
     }
 }

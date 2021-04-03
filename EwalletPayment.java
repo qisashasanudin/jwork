@@ -7,7 +7,7 @@
  */
 public class EwalletPayment extends Invoice
 {
-    private static PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
+    private static PaymentType PAYMENT_TYPE;
     private Bonus bonus;
     
     /**
@@ -66,6 +66,8 @@ public class EwalletPayment extends Invoice
      * method printData, berfungsi untuk mencetak instance variable ke layar
      */
     public void printData(){
+        setTotalFee();
+        
         System.out.println("==================== INVOICE ====================");
         
         System.out.println("ID: " + getId());
