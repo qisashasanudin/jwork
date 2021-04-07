@@ -7,7 +7,7 @@
  */
 public class BankPayment extends Invoice
 {
-    private static PaymentType PAYMENT_TYPE;
+    private static final PaymentType PAYMENT_TYPE = PaymentType.BankPayment;
     private int adminFee;
     
     /**
@@ -28,7 +28,7 @@ public class BankPayment extends Invoice
      * @return PAYMENT_TYPE.BankPayment
      */
     public PaymentType getPaymentType() {
-        return PAYMENT_TYPE.BankPayment;
+        return PAYMENT_TYPE;
     }
     
     /**
@@ -54,7 +54,7 @@ public class BankPayment extends Invoice
      *
      */
     public void setTotalFee(){
-        if (adminFee > 0){
+        if (adminFee != 0){
             totalFee = getJob().getFee() - adminFee;
         }
         else{
@@ -75,12 +75,12 @@ public class BankPayment extends Invoice
         System.out.println("Date: " + getDate());
         System.out.println("Job Seeker: " + getJobseeker().getName());
         
-        if (adminFee > 0){
+        if (adminFee != 0){
             System.out.println("Admin Fee: " + adminFee);
         }
         
         System.out.println("Total Fee: " + getTotalFee());
-        System.out.println("Status: " + getInvoiceStatus().toString());
-        System.out.println("Payment: " + getPaymentType().toString());
+        System.out.println("Status: " + getInvoiceStatus());
+        System.out.println("Payment: " + getPaymentType());
     }
 }

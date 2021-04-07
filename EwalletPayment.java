@@ -7,7 +7,7 @@
  */
 public class EwalletPayment extends Invoice
 {
-    private static PaymentType PAYMENT_TYPE;
+    private static final PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
     private Bonus bonus;
     
     /**
@@ -28,7 +28,7 @@ public class EwalletPayment extends Invoice
      * @return PAYMENT_TYPE.EwalletPayment
      */
     public PaymentType getPaymentType() {
-        return PAYMENT_TYPE.EwalletPayment;
+        return PAYMENT_TYPE;
     }
     
     /**
@@ -80,7 +80,7 @@ public class EwalletPayment extends Invoice
         }
         
         System.out.println("Total Fee: " + getTotalFee());
-        System.out.println("Status: " + getInvoiceStatus().toString());
-        System.out.println("Payment: " + PAYMENT_TYPE.toString());
+        System.out.println("Status: " + getInvoiceStatus());
+        System.out.println("Payment: " + PAYMENT_TYPE);
     }
 }
