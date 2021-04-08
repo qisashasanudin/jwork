@@ -1,12 +1,14 @@
+import java.util.GregorianCalendar;
+
 public class JWork {
 
     public static void main(String[] args) {
         Location location1 = new Location("Jawa Barat", "Sukabumi", "RS Ridogalih");
         Recruiter recruiter1 = new Recruiter(1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com", "0696969696", location1);
         
-        Jobseeker jobseeker1 = new Jobseeker(1, "Andi", "andi@gmail.com", "sedih123", "27/03/2021");
-        Jobseeker jobseeker2 = new Jobseeker(2, "Budi", "budi@gmail.com", "sedih123", "27/03/2021");
-        Jobseeker jobseeker3 = new Jobseeker(3, "Dodi", "dodi@gmail.com", "sedih123", "27/03/2021");
+        Jobseeker jobseeker1 = new Jobseeker(1, "Andi", ".etd@ui.ac.id", "sedih123", new GregorianCalendar(2021, 3, 8));
+        Jobseeker jobseeker2 = new Jobseeker(2, "Budi", "etd@ui.ac.id", "Sedih123", 2021, 4, 8);
+        Jobseeker jobseeker3 = new Jobseeker(3, "Dodi", "et..d@ui.ac.id", "Sedih123");
         
         Bonus bonus1 = new Bonus(1, "BONUS69420", 500000, 5000000, true);
         
@@ -48,7 +50,19 @@ public class JWork {
         // invoice2.printData();
         // invoice3.printData();
         
-        invoice4.printData();
-        invoice5.printData();
+        //invoice4.printData();
+        //invoice5.printData();
+        System.out.println("==================== Jobseeker 1 ====================");
+        System.out.println(jobseeker1);
+        System.out.println("\n==================== Jobseeker 2 ====================");
+        System.out.println(jobseeker2);
+        System.out.println("\n==================== Jobseeker 3 ====================");
+        System.out.println(jobseeker3);
+        
+        jobseeker1.setEmail("e.td@ui.ac.id");
+        jobseeker1.setPassword("Sedih123"); 
+        
+        System.out.println("==================== Jobseeker 1 (new email & password )====================");
+        System.out.println(jobseeker1);
     }
 }

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Location
-comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\ class\ Location\:\ berfungsi\ untuk\ meng-generate\ object\ yang\ merepresentasikan\ lokasi\ tertentu\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
+comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\ class\ Location\:\ berfungsi\ untuk\ meng-generate\r\n\ object\ yang\ merepresentasikan\ lokasi\ tertentu\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
 comment1.params=province\ city\ description
 comment1.target=Location(java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ Location\r\n
@@ -23,6 +23,6 @@ comment7.params=description
 comment7.target=void\ setDescription(java.lang.String)
 comment7.text=\r\n\ method\ setDescription,\ berfungsi\ sebagai\ setter\ untuk\ mengisi\ value\r\n\ description\r\n\r\n\ @param\ description\r\n
 comment8.params=
-comment8.target=void\ printData()
-comment8.text=\r\n\ method\ printData,\ berfungsi\ untuk\ mencetak\ instance\ variable\ ke\ layar\r\n
+comment8.target=java.lang.String\ toString()
+comment8.text=\r\n\ method\ toString,\ berfungsi\ untuk\ mencetak\ instance\ variable\ ke\ layar\r\n
 numComments=9

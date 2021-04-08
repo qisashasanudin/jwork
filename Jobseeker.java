@@ -1,7 +1,12 @@
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
 
 /**
- * Praktikum OOP - Program "JWork"
- * class Jobseeker: berfungsi untuk meng-generate object yang merepresentasikan pencari pekerjaan / karyawan
+ * Praktikum OOP - Program "JWork" class Jobseeker: berfungsi untuk
+ * meng-generate object yang merepresentasikan pencari pekerjaan / karyawan
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021
@@ -13,17 +18,33 @@ public class Jobseeker {
     private String name;
     private String email;
     private String password;
-    private String joinDate;
+    public Calendar joinDate;
 
     /**
      * Constructor untuk object dari class Jobseeker
      */
-    public Jobseeker(int id, String name, String email, String password, String joinDate) {
+    public Jobseeker(int id, String name, String email, String password, Calendar joinDate) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
         this.joinDate = joinDate;
+    }
+
+    public Jobseeker(int id, String name, String email, String password, int year, int month, int dayOfMonth) {
+        this.id = id;
+        this.name = name;
+        setEmail(email);
+        setPassword(password);
+        this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
+    }
+
+    public Jobseeker(int id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        setEmail(email);
+        setPassword(password);
+        this.joinDate = Calendar.getInstance();
     }
 
     /**
@@ -67,7 +88,7 @@ public class Jobseeker {
      *
      * @return joinDate
      */
-    public String getJoinDate() {
+    public Calendar getJoinDate() {
         return joinDate;
     }
 
@@ -94,8 +115,16 @@ public class Jobseeker {
      *
      * @param email
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email){
+        String regex = "\\A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if(matcher.matches()){
+            this.email = email;
+        }
+        else{
+            this.email = "";
+        }
     }
 
     /**
@@ -104,7 +133,15 @@ public class Jobseeker {
      * @param password
      */
     public void setPassword(String password) {
-        this.password = password;
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        if(matcher.matches()){
+            this.password = password;
+        }
+        else{
+            this.password = "";
+        }
     }
 
     /**
@@ -112,14 +149,22 @@ public class Jobseeker {
      *
      * @param joinDate
      */
-    public void setJoinDate(String joinDate) {
+    public void setJoinDate(Calendar joinDate) {
         this.joinDate = joinDate;
     }
 
-    /**
-     * method printData, berfungsi untuk mencetak instance variable ke layar
-     */
-    public void printData() {
-        System.out.println("nama Jobseeker: " + name);
+    public void setJoinDate(int year, int month, int dayOfMonth) {
+        this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
+
+    /**
+     * method toString, berfungsi untuk mencetak instance variable ke layar
+     */
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+        String date = dateFormat.format(getJoinDate().getTime());
+        return ("Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
+                + getPassword() + "\nJoin Date = " + date);
+    }
+
 }

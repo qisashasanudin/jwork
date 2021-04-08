@@ -1,6 +1,6 @@
 /**
- * Praktikum OOP - Program "JWork"
- * class Location: berfungsi untuk meng-generate object yang merepresentasikan lokasi tertentu
+ * Praktikum OOP - Program "JWork" class Location: berfungsi untuk meng-generate
+ * object yang merepresentasikan lokasi tertentu
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021
@@ -78,9 +78,9 @@ public class Location {
     }
 
     /**
-     * method printData, berfungsi untuk mencetak instance variable ke layar
+     * method toString, berfungsi untuk mencetak instance variable ke layar
      */
-    public void printData() {
-        System.out.println("Provinsi: " + province);
+    public String toString() {
+        return ("Province = " + getProvince() + "\nCity = " + getCity() + "\nDescription = " + getDescription());
     }
 }

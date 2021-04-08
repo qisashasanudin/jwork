@@ -1,6 +1,7 @@
 /**
- * Praktikum OOP - Program "JWork"
- * class Recruiter: berfungsi untuk meng-generate object yang merepresentasikan seorang perekrut karyawan tertentu
+ * Praktikum OOP - Program "JWork" class Recruiter: berfungsi untuk
+ * meng-generate object yang merepresentasikan seorang perekrut karyawan
+ * tertentu
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021
@@ -118,9 +119,10 @@ public class Recruiter {
     }
 
     /**
-     * method printData, berfungsi untuk mencetak instance variable ke layar
+     * method toString, berfungsi untuk mencetak instance variable ke layar
      */
-    public void printData() {
-        System.out.println("nama Recruiter: " + name);
+    public String toString() {
+        return ("Id = " + getId() + "\nNama = " + getName() + "\nPhoneNumber = " + getPhoneNumber() + "\nLocation = "
+                + getLocation());
     }
 }

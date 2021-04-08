@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Job
-comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\r\n\ class\ Recruiter\:\ berfungsi\ untuk\ meng-generate\ object\ yang\ merepresentasikan\ sebuah\ pekerjaan\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
+comment0.text=\r\n\ Praktikum\ OOP\ -\ Program\ "JWork"\ class\ Recruiter\:\ berfungsi\ untuk\r\n\ meng-generate\ object\ yang\ merepresentasikan\ sebuah\ pekerjaan\r\n\r\n\ @author\ Qisas\ Tazkia\ Hasanudin\r\n\ @version\ 18-03-2021\r\n
 comment1.params=id\ name\ fee\ category\ recruiter
 comment1.target=Job(int,\ java.lang.String,\ int,\ JobCategory,\ Recruiter)
 comment1.text=\r\n\ Constructor\ untuk\ object\ dari\ class\ Job\r\n
@@ -11,8 +11,8 @@ comment11.params=recruiter
 comment11.target=void\ setRecruiter(Recruiter)
 comment11.text=\r\n\ method\ setRecruiter,\ berfungsi\ sebagai\ setter\ untuk\ mengisi\ value\ recruiter\r\n\r\n\ @param\ recruiter\r\n
 comment12.params=
-comment12.target=void\ printData()
-comment12.text=\r\n\ method\ printData,\ berfungsi\ untuk\ mencetak\ instance\ variable\ ke\ layar\r\n
+comment12.target=java.lang.String\ toString()
+comment12.text=\r\n\ method\ toString,\ berfungsi\ untuk\ mencetak\ instance\ variable\ ke\ layar\r\n
 comment2.params=
 comment2.target=int\ getId()
 comment2.text=\r\n\ method\ getId,\ berfungsi\ sebagai\ getter\ untuk\ mengambil\ value\ id\r\n\r\n\ @return\ id\r\n
