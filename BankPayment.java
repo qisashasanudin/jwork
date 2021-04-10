@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat;
+
 /**
  * Praktikum OOP - Program "JWork"
  * class BankPayment: berfungsi untuk meng-generate object yang merepresentasikan pembayaran dengan transfer bank
@@ -13,12 +15,12 @@ public class BankPayment extends Invoice
     /**
      * Constructor untuk object dari class BankPayment
      */
-    public BankPayment(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus status) {
-        super(id, job, date, jobseeker, status);
+    public BankPayment(int id, Job job, Jobseeker jobseeker, InvoiceStatus status) {
+        super(id, job, jobseeker, status);
     }
     
-    public BankPayment(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus status, int adminFee) {
-        super(id, job, date, jobseeker, status);
+    public BankPayment(int id, Job job, Jobseeker jobseeker, InvoiceStatus status, int adminFee) {
+        super(id, job, jobseeker, status);
         this.adminFee = adminFee;
     }
     
@@ -63,24 +65,18 @@ public class BankPayment extends Invoice
     }
     
     /**
-     * method printData, berfungsi untuk mencetak instance variable ke layar
+     * method toString, berfungsi untuk mencetak instance variable ke layar
      */
-    public void printData(){
-        setTotalFee();
-        
-        System.out.println("==================== INVOICE ====================");
-        
-        System.out.println("ID: " + getId());
-        System.out.println("Job: " + getJob().getName());
-        System.out.println("Date: " + getDate());
-        System.out.println("Job Seeker: " + getJobseeker().getName());
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+        String date = dateFormat.format(getDate().getTime());
         
         if (adminFee != 0){
-            System.out.println("Admin Fee: " + adminFee);
+            return ("Id = " + getId() + "\nJob = " + getJob().getName() + "\nDate = " + date + "\nJob Seeker = "
+                + getJobseeker().getName() + "\nAdmin Fee = " + adminFee + "\nTotal Fee = " + getTotalFee() + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
+        }else{
+            return ("Id = " + getId() + "\nJob = " + getJob().getName() + "\nDate = " + date + "\nJob Seeker = "
+                + getJobseeker().getName()+ "\nTotal Fee = " + getTotalFee() + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
         }
-        
-        System.out.println("Total Fee: " + getTotalFee());
-        System.out.println("Status: " + getInvoiceStatus());
-        System.out.println("Payment: " + getPaymentType());
     }
 }

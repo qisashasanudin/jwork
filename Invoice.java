@@ -1,3 +1,6 @@
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  * Praktikum OOP - Program "JWork"
  * class Invoice: berfungsi untuk meng-generate object yang merepresentasikan bukti pengiriman gaji
@@ -10,7 +13,7 @@ public abstract class Invoice {
     // instance variable
     private int id;
     private Job job;
-    private String date;
+    private Calendar date;
     protected int totalFee;
     private Jobseeker jobseeker;
     private InvoiceStatus invoiceStatus;
@@ -18,10 +21,10 @@ public abstract class Invoice {
     /**
      * Constructor untuk object dari class Invoice
      */
-    public Invoice(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
         this.id = id;
         this.job = job;
-        this.date = date;
+        this.date = Calendar.getInstance();
         this.jobseeker = jobseeker;
         this.invoiceStatus = invoiceStatus;
     }
@@ -49,7 +52,7 @@ public abstract class Invoice {
      *
      * @return date
      */
-    public String getDate() {
+    public Calendar getDate() {
         return date;
     }
 
@@ -109,8 +112,11 @@ public abstract class Invoice {
      *
      * @param date
      */
-    public void setDate(String date) {
+    public void setDate(Calendar date) {
         this.date = date;
+    }
+    public void setDate(int year, int month, int dayOfMonth) {
+        this.date = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
 
     /**
@@ -140,5 +146,5 @@ public abstract class Invoice {
     /**
      * method printData, berfungsi untuk mencetak instance variable ke layar
      */
-    public abstract void printData();
+    public abstract String toString();
 }

@@ -6,7 +6,7 @@ public class JWork {
         Location location1 = new Location("Jawa Barat", "Sukabumi", "RS Ridogalih");
         Recruiter recruiter1 = new Recruiter(1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com", "0696969696", location1);
         
-        Jobseeker jobseeker1 = new Jobseeker(1, "Andi", ".etd@ui.ac.id", "sedih123", new GregorianCalendar(2021, 3, 8));
+        Jobseeker jobseeker1 = new Jobseeker(1, "Andi", ".etd@ui.ac.id", "password", new GregorianCalendar(2021, 3, 8));
         Jobseeker jobseeker2 = new Jobseeker(2, "Budi", "etd@ui.ac.id", "Sedih123", 2021, 4, 8);
         Jobseeker jobseeker3 = new Jobseeker(3, "Dodi", "et..d@ui.ac.id", "Sedih123");
         
@@ -15,12 +15,18 @@ public class JWork {
         Job job1 = new Job(1, "Designer", 5000000, JobCategory.FrontEnd, recruiter1);
         Job job2 = new Job(2, "Programmer", 6000000, JobCategory.FrontEnd, recruiter1);
         
-        EwalletPayment invoice1 = new EwalletPayment(1, job1, "25 April 2021", jobseeker1, InvoiceStatus.Finished);
-        EwalletPayment invoice2 = new EwalletPayment(2, job1, "25 April 2021", jobseeker2, bonus1, InvoiceStatus.Finished);
-        EwalletPayment invoice3 = new EwalletPayment(3, job2, "25 April 2021", jobseeker3, bonus1, InvoiceStatus.Finished);
+        EwalletPayment invoice1 = new EwalletPayment(1, job1, jobseeker1, InvoiceStatus.Finished);
+        EwalletPayment invoice2 = new EwalletPayment(2, job1, jobseeker2, bonus1, InvoiceStatus.Finished);
+        EwalletPayment invoice3 = new EwalletPayment(3, job2,  jobseeker3, bonus1, InvoiceStatus.Finished);
         
-        BankPayment invoice4 = new BankPayment(4, job1, "25 April 2021", jobseeker1, InvoiceStatus.Finished);
-        BankPayment invoice5 = new BankPayment(5, job2, "25 April 2021", jobseeker2, InvoiceStatus.Finished, 5000);
+        BankPayment invoice4 = new BankPayment(4, job1, jobseeker1, InvoiceStatus.Finished);
+        BankPayment invoice5 = new BankPayment(5, job2, jobseeker2, InvoiceStatus.Finished, 5000);
+        
+        invoice1.setTotalFee();
+        invoice2.setTotalFee();
+        invoice3.setTotalFee();
+        invoice4.setTotalFee();
+        invoice5.setTotalFee();
         
         // .out.println(recruiter1.getName());
         // recruiter1.setName("Hary Ridart");
@@ -52,17 +58,23 @@ public class JWork {
         
         //invoice4.printData();
         //invoice5.printData();
-        System.out.println("==================== Jobseeker 1 ====================");
-        System.out.println(jobseeker1);
-        System.out.println("\n==================== Jobseeker 2 ====================");
-        System.out.println(jobseeker2);
-        System.out.println("\n==================== Jobseeker 3 ====================");
-        System.out.println(jobseeker3);
+        //System.out.println("==================== Jobseeker 1 ====================");
+        //System.out.println(jobseeker1);
+        //System.out.println("\n==================== Jobseeker 2 ====================");
+        //System.out.println(jobseeker2);
+        //System.out.println("\n==================== Jobseeker 3 ====================");
+        //System.out.println(jobseeker3);
         
-        jobseeker1.setEmail("e.td@ui.ac.id");
-        jobseeker1.setPassword("Sedih123"); 
+        //jobseeker1.setEmail("e.td@ui.ac.id");
+        //jobseeker1.setPassword("Sedih123"); 
         
-        System.out.println("==================== Jobseeker 1 (new email & password )====================");
-        System.out.println(jobseeker1);
+        //System.out.println("==================== Jobseeker 1 (new email & password )====================");
+        //System.out.println(jobseeker1);
+        
+        System.out.println("\n==================== E-Wallet ====================");
+        
+        System.out.println(invoice1);
+        System.out.println("\n==================== Bank ====================");
+        System.out.println(invoice5);
     }
 }

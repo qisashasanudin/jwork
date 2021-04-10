@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat;
+
 /**
  * Praktikum OOP - Program "JWork"
  * class EwalletPayment: berfungsi untuk meng-generate object yang merepresentasikan pembayaran dengan E-Wallet
@@ -13,12 +15,12 @@ public class EwalletPayment extends Invoice
     /**
      * Constructor untuk object dari class EwalletPayment
      */
-    public EwalletPayment(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
-        super(id, job, date, jobseeker, invoiceStatus);
+    public EwalletPayment(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+        super(id, job, jobseeker, invoiceStatus);
     }
     
-    public EwalletPayment(int id, Job job, String date, Jobseeker jobseeker, Bonus bonus, InvoiceStatus invoiceStatus) {
-        super(id, job, date, jobseeker, invoiceStatus);
+    public EwalletPayment(int id, Job job, Jobseeker jobseeker, Bonus bonus, InvoiceStatus invoiceStatus) {
+        super(id, job, jobseeker, invoiceStatus);
         this.bonus = bonus;
     }
     
@@ -63,24 +65,18 @@ public class EwalletPayment extends Invoice
     }
     
     /**
-     * method printData, berfungsi untuk mencetak instance variable ke layar
+     * method toString, berfungsi untuk mencetak instance variable ke layar
      */
-    public void printData(){
-        setTotalFee();
-        
-        System.out.println("==================== INVOICE ====================");
-        
-        System.out.println("ID: " + getId());
-        System.out.println("Job: " + getJob().getName());
-        System.out.println("Date: " + getDate());
-        System.out.println("Job Seeker: " + getJobseeker().getName());
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+        String date = dateFormat.format(getDate().getTime());
         
         if ((bonus != null) && (bonus.getActive() == true) && (getJob().getFee() > bonus.getMinTotalFee())){
-            System.out.println("Referral Code:" + bonus.getReferralCode());
+            return ("Id = " + getId() + "\nJob = " + getJob().getName() + "\nDate = " + date + "\nJob Seeker = "
+                + getJobseeker().getName() + "\nReferral Code = " + bonus.getReferralCode() + "\nTotal Fee = " + getTotalFee() + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
+        }else{
+            return ("Id = " + getId() + "\nJob = " + getJob().getName() + "\nDate = " + date + "\nJob Seeker = "
+                + getJobseeker().getName()+ "\nTotal Fee = " + getTotalFee() + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
         }
-        
-        System.out.println("Total Fee: " + getTotalFee());
-        System.out.println("Status: " + getInvoiceStatus());
-        System.out.println("Payment: " + PAYMENT_TYPE);
     }
 }
