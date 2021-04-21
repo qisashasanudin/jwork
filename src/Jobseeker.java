@@ -114,14 +114,13 @@ public class Jobseeker {
      *
      * @param email
      */
-    public void setEmail(String email){
+    public void setEmail(String email) {
         String regex = "\\A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
-        if(matcher.matches()){
+        if (matcher.matches()) {
             this.email = email;
-        }
-        else{
+        } else {
             this.email = "";
         }
     }
@@ -135,10 +134,9 @@ public class Jobseeker {
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
-        if(matcher.matches()){
+        if (matcher.matches()) {
             this.password = password;
-        }
-        else{
+        } else {
             this.password = "";
         }
     }
@@ -162,11 +160,13 @@ public class Jobseeker {
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
         String date = dateFormat.format(getJoinDate().getTime());
-        return ("Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
-                + getPassword() + "\nJoin Date = " + date);
+        if (joinDate != null) {
+            return ("Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
+                    + getPassword() + "\nJoin Date = " + date);
+        } else {
+            return ("Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
+                    + getPassword());
+        }
     }
 
 }
-
-
-
