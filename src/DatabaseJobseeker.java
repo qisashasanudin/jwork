@@ -41,9 +41,10 @@ public class DatabaseJobseeker {
     public static Jobseeker getJobseekerById(int id) {
         Jobseeker result = null;
 
-        for (int i = 0; i < JOBSEEKER_DATABASE.size(); i++) {
-            if (id == JOBSEEKER_DATABASE.get(i).getId()) {
-                result = JOBSEEKER_DATABASE.get(i);
+        for (Jobseeker element : JOBSEEKER_DATABASE) {
+            if (element.getId() == id) {
+                result = element;
+                break;
             }
         }
         return result;

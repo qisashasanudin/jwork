@@ -44,6 +44,7 @@ public class Jobseeker {
         this.name = name;
         setEmail(email);
         setPassword(password);
+        this.joinDate = Calendar.getInstance();
     }
 
     /**

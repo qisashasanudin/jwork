@@ -14,15 +14,20 @@ public class JWork {
         result = DatabaseJobseeker.addJobseeker(new Jobseeker(3, "Hary", "hary.ridart@ui.ac.id", "Sedih123"));
         System.out.println(result);
 
+        System.out.println("\n==================== Jobseeker ====================");
+        System.out.println("\n===== Jobseeker1 =====");
+        System.out.println(DatabaseJobseeker.getJobseekerById(1));
+        System.out.println("\n===== Jobseeker2 =====");
+        System.out.println(DatabaseJobseeker.getJobseekerById(2));
+        System.out.println("\n===== Jobseeker3 =====");
+        System.out.println(DatabaseJobseeker.getJobseekerById(3));
+
         DatabaseJob
                 .addJob(new Job(1, "Designer", 5000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
         DatabaseJob
                 .addJob(new Job(2, "Designer", 5000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
         DatabaseJob
                 .addJob(new Job(3, "Programmer", 6000000, JobCategory.BackEnd, DatabaseRecruiter.getRecruiterById(1)));
-
-        System.out.println("\n==================== Jobseeker ====================");
-        System.out.println(DatabaseJobseeker.getJobseekerById(1));
 
         System.out.println("\n==================== Job ====================");
         System.out.println("\n===== FrontEnd =====");
