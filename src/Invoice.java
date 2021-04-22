@@ -1,9 +1,10 @@
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.ArrayList;
 
 /**
- * Praktikum OOP - Program "JWork"
- * class Invoice: berfungsi untuk meng-generate object yang merepresentasikan bukti pengiriman gaji
+ * Praktikum OOP - Program "JWork" class Invoice: berfungsi untuk meng-generate
+ * object yang merepresentasikan bukti pengiriman gaji
  *
  * @author Qisas Tazkia Hasanudin
  * @version 18-03-2021
@@ -12,7 +13,7 @@ import java.util.GregorianCalendar;
 public abstract class Invoice {
     // instance variable
     private int id;
-    private Job job;
+    private ArrayList<Job> jobs;
     private Calendar date;
     protected int totalFee;
     private Jobseeker jobseeker;
@@ -21,12 +22,12 @@ public abstract class Invoice {
     /**
      * Constructor untuk object dari class Invoice
      */
-    public Invoice(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, ArrayList<Job> jobs, Jobseeker jobseeker) {
         this.id = id;
-        this.job = job;
+        this.jobs = jobs;
         this.date = Calendar.getInstance();
         this.jobseeker = jobseeker;
-        this.invoiceStatus = invoiceStatus;
+        this.invoiceStatus = InvoiceStatus.Ongoing;
     }
 
     /**
@@ -41,10 +42,10 @@ public abstract class Invoice {
     /**
      * method getJob, berfungsi sebagai getter untuk mengambil value job
      *
-     * @return job
+     * @return jobs
      */
-    public Job getJob() {
-        return job;
+    public ArrayList<Job> getJobs() {
+        return jobs;
     }
 
     /**
@@ -73,15 +74,17 @@ public abstract class Invoice {
     public Jobseeker getJobseeker() {
         return jobseeker;
     }
-    
+
     /**
-     * method getPaymentType, berfungsi sebagai getter untuk mengambil value paymentType
+     * method getPaymentType, berfungsi sebagai getter untuk mengambil value
+     * paymentType
      *
      */
     public abstract PaymentType getPaymentType();
 
     /**
-     * method getInvoiceStatus, berfungsi sebagai getter untuk mengambil value invoiceStatus
+     * method getInvoiceStatus, berfungsi sebagai getter untuk mengambil value
+     * invoiceStatus
      *
      * @return invoiceStatus
      */
@@ -101,10 +104,10 @@ public abstract class Invoice {
     /**
      * method setJob, berfungsi sebagai setter untuk mengisi value job
      *
-     * @param job
+     * @param jobs
      */
-    public void setJob(Job job) {
-        this.job = job;
+    public void setJobs(ArrayList<Job> jobs) {
+        this.jobs = jobs;
     }
 
     /**
@@ -115,6 +118,7 @@ public abstract class Invoice {
     public void setDate(Calendar date) {
         this.date = date;
     }
+
     public void setDate(int year, int month, int dayOfMonth) {
         this.date = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
@@ -135,11 +139,12 @@ public abstract class Invoice {
     }
 
     /**
-     * method setInvoiceStatus, berfungsi sebagai setter untuk mengisi value invoiceStatus
+     * method setInvoiceStatus, berfungsi sebagai setter untuk mengisi value
+     * invoiceStatus
      *
      * @param invoiceStatus
      */
-    public void setInvoiceStatus(InvoiceStatus status) {
+    public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
         this.invoiceStatus = invoiceStatus;
     }
 
