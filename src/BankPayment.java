@@ -79,13 +79,13 @@ public class BankPayment extends Invoice {
         String res = "";
         for (Job job : getJobs()) {
             if (adminFee != 0) {
-                res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date + "\nJob Seeker = "
-                        + getJobseeker().getName() + "\nAdmin Fee = " + adminFee + "\nTotal Fee = " + getTotalFee()
-                        + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
+                res = res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date
+                        + "\nJob Seeker = " + getJobseeker().getName() + "\nAdmin Fee = " + adminFee + "\nTotal Fee = "
+                        + getTotalFee() + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
             } else {
-                res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date + "\nJob Seeker = "
-                        + getJobseeker().getName() + "\nTotal Fee = " + getTotalFee() + "\nStatus = "
-                        + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
+                res = res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date
+                        + "\nJob Seeker = " + getJobseeker().getName() + "\nTotal Fee = " + getTotalFee()
+                        + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
             }
         }
         return res;

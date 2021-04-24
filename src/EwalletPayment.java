@@ -80,13 +80,14 @@ public class EwalletPayment extends Invoice {
         String res = "";
         for (Job job : getJobs()) {
             if ((bonus != null) && (bonus.getActive() == true) && (job.getFee() > bonus.getMinTotalFee())) {
-                res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date + "\nJob Seeker = "
-                        + getJobseeker().getName() + "\nReferral Code = " + bonus.getReferralCode() + "\nTotal Fee = "
-                        + getTotalFee() + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
+                res = res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date
+                        + "\nJob Seeker = " + getJobseeker().getName() + "\nReferral Code = " + bonus.getReferralCode()
+                        + "\nTotal Fee = " + getTotalFee() + "\nStatus = " + getInvoiceStatus() + "\nPayment = "
+                        + PAYMENT_TYPE);
             } else {
-                res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date + "\nJob Seeker = "
-                        + getJobseeker().getName() + "\nTotal Fee = " + getTotalFee() + "\nStatus = "
-                        + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
+                res = res.concat("\nId = " + getId() + "\nJob = " + job.getName() + "\nDate = " + date
+                        + "\nJob Seeker = " + getJobseeker().getName() + "\nTotal Fee = " + getTotalFee()
+                        + "\nStatus = " + getInvoiceStatus() + "\nPayment = " + PAYMENT_TYPE);
             }
         }
         return res;
