@@ -38,6 +38,9 @@ public class DatabaseInvoice {
     }
 
     public static boolean addInvoice(Invoice invoice) {
+        if (invoice.getInvoiceStatus() == InvoiceStatus.Ongoing){
+            invoice.setInvoiceStatus(InvoiceStatus.Finished);
+        }
         INVOICE_DATABASE.add(invoice);
         lastId = invoice.getId();
         return true;
@@ -46,8 +49,8 @@ public class DatabaseInvoice {
     public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus) {
         boolean temp = true;
         for (Invoice invoice : INVOICE_DATABASE) {
-            if (id == invoice.getId()) {
-                invoice.setInvoiceStatus(InvoiceStatus.Ongoing);
+            if (id == invoice.getId() && invoice.getInvoiceStatus() == InvoiceStatus.Ongoing) {
+                invoice.setInvoiceStatus(invoiceStatus);
                 temp = true;
             } else {
                 temp = false;
@@ -60,7 +63,7 @@ public class DatabaseInvoice {
         boolean temp = true;
         for (Invoice invoice : INVOICE_DATABASE) {
             if (id == invoice.getId()) {
-                INVOICE_DATABASE.remove(id);
+                INVOICE_DATABASE.remove(invoice);
                 temp = true;
             } else {
                 temp = false;

@@ -5,18 +5,15 @@ public class JWork {
         public static void main(String[] args) {
                 Location location1 = new Location("Jawa Barat", "Depok", "Universitas Indonesia");
 
-                DatabaseRecruiter.addRecruiter(new Recruiter(1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com",
-                                "0696969696", location1));
-                boolean result;
 
-                result = DatabaseJobseeker.addJobseeker(new Jobseeker(1, "Qisas", "qisas.tazkia@ui.ac.id", "password"));
-                System.out.println(result);
-                result = DatabaseJobseeker.addJobseeker(new Jobseeker(2, "Qisas", "qisas.tazkia@ui.ac.id", "Sedih123"));
-                System.out.println(result);
-                result = DatabaseJobseeker.addJobseeker(new Jobseeker(2, "Hary", "hary.ridart@ui.ac.id", "Sedih123"));
-                System.out.println(result);
-                DatabaseBonus.addBonus(new Bonus(1, "BONUS", 500000, 6000000, false));
-                DatabaseBonus.addBonus(new Bonus(2, "BONUS", 200000, 5000000, true));
+                DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com","0696969696", location1));
+
+                DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Qisas", "qisas.tazkia@ui.ac.id", "Sedih123"));
+                DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Hary", "hary.ridart@ui.ac.id", "Sedih123"));
+                DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Qisas", "qisas.tazkia@ui.ac.id", "password"));
+
+                DatabaseBonus.addBonus(new Bonus(DatabaseBonus.getLastId()+1, "BONUS", 500000, 6000000, false));
+                DatabaseBonus.addBonus(new Bonus(DatabaseBonus.getLastId()+1, "BONUS", 200000, 5000000, true));
 
                 System.out.println("\n==================== Bonus ====================");
                 System.out.println("\n===== Bonus1 =====");
@@ -29,14 +26,11 @@ public class JWork {
                 ArrayList<Job> job2 = new ArrayList<Job>();
                 job2.add(new Job(2, "Programmer", 6000000, JobCategory.BackEnd, DatabaseRecruiter.getRecruiterById(1)));
 
-                DatabaseInvoice.addInvoice(new BankPayment(1, job1, DatabaseJobseeker.getJobseekerById(1), 6500));
-                DatabaseInvoice.getInvoiceByJobseeker(1).get(DatabaseInvoice.getInvoiceByJobseeker(1).size() - 1)
-                                .setTotalFee();
+                DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), 6500));
+                DatabaseInvoice.getInvoiceByJobseeker(1).get(DatabaseInvoice.getInvoiceByJobseeker(1).size() - 1).setTotalFee();
 
-                DatabaseInvoice.addInvoice(new EwalletPayment(1, job1, DatabaseJobseeker.getJobseekerById(1),
-                                DatabaseBonus.getBonusById(1)));
-                DatabaseInvoice.getInvoiceByJobseeker(1).get(DatabaseInvoice.getInvoiceByJobseeker(1).size() - 1)
-                                .setTotalFee();
+                DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), DatabaseBonus.getBonusById(1)));
+                DatabaseInvoice.getInvoiceByJobseeker(1).get(DatabaseInvoice.getInvoiceByJobseeker(1).size() - 1).setTotalFee();
 
                 System.out.println("\n==================== Invoice ====================");
                 System.out.println(DatabaseInvoice.getInvoiceDatabase());
@@ -46,8 +40,7 @@ public class JWork {
                 System.out.println("\n==================== Invoice ====================");
                 System.out.println(DatabaseInvoice.getInvoiceDatabase());
 
-                DatabaseInvoice.addInvoice(new EwalletPayment(2, job1, DatabaseJobseeker.getJobseekerById(2),
-                                DatabaseBonus.getBonusById(1)));
+                DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(2),DatabaseBonus.getBonusById(1)));
                 DatabaseBonus.getBonusById(1).setActive(true);
                 DatabaseInvoice.getInvoiceDatabase().forEach(e -> e.setTotalFee());
 
