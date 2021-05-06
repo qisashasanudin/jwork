@@ -21,16 +21,14 @@ public class JWork {
                 System.out.println("\n===== Bonus2 =====");
                 System.out.println(DatabaseBonus.getBonusById(2));
 
-                ArrayList<Job> job1 = new ArrayList<Job>();
+                ArrayList<Job> job1 = new ArrayList<>();
                 job1.add(new Job(1, "Designer", 5000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
-                ArrayList<Job> job2 = new ArrayList<Job>();
+                ArrayList<Job> job2 = new ArrayList<>();
                 job2.add(new Job(2, "Programmer", 6000000, JobCategory.BackEnd, DatabaseRecruiter.getRecruiterById(1)));
 
                 DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), 6500));
-                DatabaseInvoice.getInvoiceByJobseeker(1).get(DatabaseInvoice.getInvoiceByJobseeker(1).size() - 1).setTotalFee();
-
                 DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), DatabaseBonus.getBonusById(1)));
-                DatabaseInvoice.getInvoiceByJobseeker(1).get(DatabaseInvoice.getInvoiceByJobseeker(1).size() - 1).setTotalFee();
+                DatabaseInvoice.getInvoiceDatabase().forEach(e -> e.setTotalFee());
 
                 System.out.println("\n==================== Invoice ====================");
                 System.out.println(DatabaseInvoice.getInvoiceDatabase());
