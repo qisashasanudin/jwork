@@ -38,14 +38,20 @@ public class DatabaseRecruiter {
      *
      * @return lastId
      */
-    public static Recruiter getRecruiterById(int id) {
+
+    public static Recruiter getRecruiterById(int id) throws RecruiterNotFoundException {
         Recruiter result = null;
 
-        for (Recruiter element : RECRUITER_DATABASE) {
-            if (element.getId() == id) {
-                result = element;
-                break;
+        try{
+            for (Recruiter element : RECRUITER_DATABASE) {
+                if (element.getId() == id) {
+                    result = element;
+                    return result;
+                }
             }
+        }
+        catch (Exception e){
+            throw new RecruiterNotFoundException(id);
         }
         return result;
     }
@@ -66,15 +72,18 @@ public class DatabaseRecruiter {
      *
      * @param id
      */
-    public static boolean removeRecruiter(int id) {
+    public static boolean removeRecruiter(int id) throws RecruiterNotFoundException {
         boolean status = false;
         for (Recruiter element : RECRUITER_DATABASE) {
             if (element.getId() == id) {
                 RECRUITER_DATABASE.remove(element);
-                status = true;
-                break;
+                return true;
             }
         }
+        if (!status){
+            throw new RecruiterNotFoundException(id);
+        }
+
         return status;
     }
 

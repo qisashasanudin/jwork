@@ -37,13 +37,18 @@ public class DatabaseBonus {
      *
      * @return result
      */
-    public static Bonus getBonusById(int id) {
+    public static Bonus getBonusById(int id) throws BonusNotFoundException {
         Bonus result = null;
         for (Bonus bonus : BONUS_DATABASE) {
             if (id == bonus.getId()) {
                 result = bonus;
+                return result;
             }
         }
+        if (result == null){
+            throw new BonusNotFoundException(id);
+        }
+
         return result;
     }
 
@@ -68,13 +73,12 @@ public class DatabaseBonus {
      *
      * @param bonus
      */
-    public static boolean addBonus(Bonus bonus) {
+    public static boolean addBonus(Bonus bonus) throws ReferralCodeAlreadyExistsException {
         for (Bonus element : BONUS_DATABASE) {
             if (element.getReferralCode() == bonus.getReferralCode()) {
-                return false;
+                throw new ReferralCodeAlreadyExistsException(bonus);
             }
         }
-
         BONUS_DATABASE.add(bonus);
         lastId = bonus.getId();
         return true;
@@ -102,12 +106,17 @@ public class DatabaseBonus {
         return result;
     }
 
-    public static boolean removeBonus(int id) {
-        for (Bonus bonus : BONUS_DATABASE) {
-            if (bonus.getId() == id) {
-                BONUS_DATABASE.remove(bonus);
-                return true;
+    public static boolean removeBonus(int id) throws BonusNotFoundException {
+        try{
+            for (Bonus bonus : BONUS_DATABASE) {
+                if (bonus.getId() == id) {
+                    BONUS_DATABASE.remove(bonus);
+                    return true;
+                }
             }
+        }
+        catch (Exception e){
+            throw new BonusNotFoundException(id);
         }
         return false;
     }

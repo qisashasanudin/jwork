@@ -38,30 +38,33 @@ public class DatabaseJobseeker {
      *
      * @return lastId
      */
-    public static Jobseeker getJobseekerById(int id) {
+    public static Jobseeker getJobseekerById(int id) throws JobseekerNotFoundException {
         Jobseeker result = null;
-
-        for (Jobseeker element : JOBSEEKER_DATABASE) {
-            if (element.getId() == id) {
-                result = element;
-                break;
+        for (Jobseeker jobseeker : JOBSEEKER_DATABASE) {
+            if (jobseeker.getId() == id) {
+                result = jobseeker;
+                return result;
             }
         }
+        if (result == null){
+            throw new JobseekerNotFoundException(id);
+        }
+
         return result;
     }
 
     /**
      * method addJobseeker, berfungsi untuk menambah Jobseeker baru
      *
-     * @param Jobseeker
+     * @param jobseeker
      */
-    public static boolean addJobseeker(Jobseeker jobseeker) {
+
+    public static boolean addJobseeker(Jobseeker jobseeker) throws EmailAlreadyExistsException {
         for (Jobseeker element : JOBSEEKER_DATABASE) {
             if (element.getEmail() == jobseeker.getEmail()) {
-                return false;
+                throw new EmailAlreadyExistsException(jobseeker);
             }
         }
-
         JOBSEEKER_DATABASE.add(jobseeker);
         lastId = jobseeker.getId();
         return true;
@@ -72,15 +75,18 @@ public class DatabaseJobseeker {
      *
      * @param id
      */
-    public static boolean removeJobseeker(int id) {
+    public static boolean removeJobseeker(int id) throws JobseekerNotFoundException {
         boolean status = false;
-        for (Jobseeker element : JOBSEEKER_DATABASE) {
-            if (element.getId() == id) {
-                JOBSEEKER_DATABASE.remove(element);
-                status = true;
-                break;
+        for (Jobseeker jobseeker : JOBSEEKER_DATABASE) {
+            if (jobseeker.getId() == id) {
+                JOBSEEKER_DATABASE.remove(jobseeker);
+                return true;
             }
         }
+        if (!status){
+            throw new JobseekerNotFoundException(id);
+        }
+
         return status;
     }
 

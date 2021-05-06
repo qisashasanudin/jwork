@@ -37,15 +37,19 @@ public class DatabaseJob {
      *
      * @return lastId
      */
-    public static Job getJobById(int id) {
-        Job result = null;
 
+    public static Job getJobById(int id) throws JobNotFoundException {
+        Job result = null;
         for (Job element : JOB_DATABASE) {
             if (element.getId() == id) {
                 result = element;
-                break;
+                return result;
             }
         }
+        if (result == null){
+            throw new JobNotFoundException(id);
+        }
+
         return result;
     }
 
@@ -103,7 +107,7 @@ public class DatabaseJob {
      *
      * @param id
      */
-    public static boolean removeJob(int id) {
+    public static boolean removeJob(int id) throws JobNotFoundException {
         boolean status = false;
         for (Job element : JOB_DATABASE) {
             if (element.getId() == id) {
@@ -112,6 +116,10 @@ public class DatabaseJob {
                 break;
             }
         }
+        if (!status){
+            throw new JobNotFoundException(id);
+        }
+
         return status;
     }
 
