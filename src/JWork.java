@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 
-public class JWork {
+public class JWork extends Thread {
         public static void main(String[] args) {
+                JWork thread = new JWork();
+                thread.start();
+
                 Location location1 = new Location("Jawa Barat", "Depok", "Universitas Indonesia");
                 DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com","0696969696", location1));
+
                 try{
                         DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Hary", "hary.ridart@ui.ac.id", "Sedih123"));
                         DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Qisas", "qisas.tazkia@ui.ac.id", "Sedih123"));
@@ -43,5 +47,15 @@ public class JWork {
                 System.out.println(DatabaseJobseeker.getJobseekerDatabase());
                 System.out.println("\n ========== Bonus ==========");
                 System.out.println(DatabaseBonus.getBonusDatabase());
+
+                ArrayList<Job> job1 = new ArrayList<>();
+                job1.add(new Job(1, "Designer", 5000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
+                DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), 6500));
+        }
+
+        public void run() {
+                for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
+                        new Thread(new FeeCalculator(invoice)).start();
+                }
         }
 }
