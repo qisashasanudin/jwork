@@ -7,8 +7,8 @@ public class FeeCalculator implements Runnable{
 
     @Override
     public void run(){
-        System.out.println("Calculating invoice id: " + invoice.getId());
+        System.out.println("\nCalculating invoice id: " + invoice.getId());
         invoice.setTotalFee();
-        System.out.println("Finished calculating invoice id: " + invoice.getId());
+        System.out.println("\nFinished calculating invoice id: " + invoice.getId());
     }
 }
