@@ -50,19 +50,32 @@ public class JWork extends Thread {
                 ArrayList<Job> job1 = new ArrayList<>();
 
                 try {
-                        job1.add(new Job(1, "Designer", 5000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
+                        job1.add(new Job(1, "Programmer", 6000000, JobCategory.BackEnd, DatabaseRecruiter.getRecruiterById(1)));
+                        job1.add(new Job(2, "Designer", 5000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
                 } catch (RecruiterNotFoundException e) {
                         System.out.println(e.getMessage());
                 }
 
                 try {
                         DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), 6500));
-                } catch (JobseekerNotFoundException e) {
+                        DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), 6500));
+                        DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId()+1, job1, DatabaseJobseeker.getJobseekerById(1), DatabaseBonus.getBonusById(1)));
+                } catch (OngoingInvoiceAlreadyExistsException | JobseekerNotFoundException | BonusNotFoundException e) {
                         System.out.println(e.getMessage());
                 }
 
                 for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
                         new Thread(new FeeCalculator(invoice)).start();
+                }
+
+                System.out.println("\n ========== Invoice ==========");
+                System.out.println(DatabaseInvoice.getInvoiceDatabase());
+                System.out.println("\n");
+
+                try {
+                        DatabaseInvoice.getInvoiceById(69);
+                } catch (InvoiceNotFoundException e) {
+                        System.out.println(e.getMessage());
                 }
         }
 }

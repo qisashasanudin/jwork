@@ -162,10 +162,10 @@ public class Jobseeker {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
         String date = dateFormat.format(getJoinDate().getTime());
         if (joinDate != null) {
-            return ("Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
+            return ("\nId = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
                     + getPassword() + "\nJoin Date = " + date);
         } else {
-            return ("Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
+            return ("\nId = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = "
                     + getPassword());
         }
     }
