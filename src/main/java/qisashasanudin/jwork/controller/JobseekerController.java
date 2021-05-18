@@ -17,7 +17,7 @@ public class JobseekerController {
         Jobseeker jobseeker = null;
         try {
             jobseeker = DatabaseJobseeker.getJobseekerById(id);
-        } catch (JobSeekerNotFoundException e) {
+        } catch (JobseekerNotFoundException e) {
             e.getMessage();
             return null;
         }
