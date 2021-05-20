@@ -9,11 +9,12 @@ package qisashasanudin.jwork;
  */
 public enum JobCategory
 {
-    WebDeveloper("Web Developer"), 
-    FrontEnd("Front End"), 
-    BackEnd("Back End"), 
-    UI("UI"), 
-    UX("UX"), 
+    Network("Network"),
+    FrontEnd("Front End"),
+    BackEnd("Back End"),
+    WebDeveloper("Web Developer"),
+    MobileDeveloper("Mobile Developer"),
+    UIUX("UI/UX"),
     Devops("Devops"), 
     DataScientist("Data Scientist"), 
     DataAnalyst("Data Analyst");
