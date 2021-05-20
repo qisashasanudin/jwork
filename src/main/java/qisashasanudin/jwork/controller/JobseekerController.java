@@ -3,7 +3,7 @@ package qisashasanudin.jwork.controller;
 import qisashasanudin.jwork.*;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/jobseeker")
+@RequestMapping("/register")
 @RestController
 public class JobseekerController {
 
@@ -25,7 +25,7 @@ public class JobseekerController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Jobseeker addJobseeker(@RequestParam(value="name") String name,
+    public Jobseeker registerJobseeker(@RequestParam(value="name") String name,
                                   @RequestParam(value="email") String email,
                                   @RequestParam(value="password") String password)
     {
@@ -38,5 +38,7 @@ public class JobseekerController {
         }
         return jobseeker;
     }
+
+    
 }
 
