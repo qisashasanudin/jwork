@@ -30,7 +30,7 @@ public class BonusController {
             DatabaseBonus.addBonus(bonus);
         }
         catch(ReferralCodeAlreadyExistsException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
         return bonus;

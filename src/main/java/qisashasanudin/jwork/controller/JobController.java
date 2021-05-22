@@ -22,7 +22,7 @@ public class JobController {
         try {
             job = DatabaseJob.getJobById(id);
         } catch (JobNotFoundException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
         return job;
@@ -54,7 +54,7 @@ public class JobController {
         try {
             job = new Job(DatabaseJob.getLastId()+1, name, fee,  category, DatabaseRecruiter.getRecruiterById(recruiterId));
         } catch (RecruiterNotFoundException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
 
         boolean status = DatabaseJob.addJob(job);

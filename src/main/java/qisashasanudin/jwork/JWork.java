@@ -45,17 +45,15 @@ public class JWork {
                         System.out.println(e.getMessage());
                 }
 
-                Invoice invoice = null;
                 try{
-                        invoice = new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobByRecruiter(3), DatabaseJobseeker.getJobseekerById(1));
-                        invoice.setTotalFee();
-                }catch(JobseekerNotFoundException e){
+                        DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Hary Ridart", "hary@gmail.com", "netlab"));
+                }catch (EmailAlreadyExistsException e){
                         System.out.println(e.getMessage());
                 }
 
-                try{
-                        DatabaseInvoice.addInvoice(invoice);
-                }catch(OngoingInvoiceAlreadyExistsException e){
+                try {
+                        DatabaseBonus.addBonus(new Bonus(DatabaseBonus.getLastId(), "BONUS1", 500000, 8000000, true));
+                }catch(ReferralCodeAlreadyExistsException e){
                         System.out.println(e.getMessage());
                 }
 

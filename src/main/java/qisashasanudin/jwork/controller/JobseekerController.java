@@ -22,7 +22,7 @@ public class JobseekerController {
         try {
             jobseeker = DatabaseJobseeker.getJobseekerById(id);
         } catch (JobseekerNotFoundException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
         return jobseeker;
@@ -38,7 +38,7 @@ public class JobseekerController {
         try {
             DatabaseJobseeker.addJobseeker(jobseeker);
         } catch (EmailAlreadyExistsException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
         return jobseeker;

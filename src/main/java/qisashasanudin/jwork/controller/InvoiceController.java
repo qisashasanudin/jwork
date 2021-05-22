@@ -19,7 +19,7 @@ public class InvoiceController {
         try {
             invoice = DatabaseInvoice.getInvoiceById(id);
         } catch (InvoiceNotFoundException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
         return invoice;
@@ -40,7 +40,7 @@ public class InvoiceController {
             invoice.setInvoiceStatus(status);
             return invoice;
         } catch (InvoiceNotFoundException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -52,7 +52,7 @@ public class InvoiceController {
             DatabaseInvoice.removeInvoice(id);
             result = true;
         } catch (InvoiceNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return result;
     }
@@ -61,77 +61,80 @@ public class InvoiceController {
     public Invoice createBankPayment(
             @RequestParam(value = "jobIdList") ArrayList<Integer> jobIdList,
             @RequestParam(value = "jobseekerId") int jobseekerId,
-            @RequestParam(value = "adminFee") int adminFee
+            @RequestParam(value = "adminFee", required = false) Integer adminFee
     ) {
         Invoice invoice = null;
         ArrayList<Job> jobs = new ArrayList<>();
-        boolean status = false;
 
         for (var i = 0; i < jobIdList.size(); i++) {
             try {
                 jobs.add(DatabaseJob.getJobById(jobIdList.get(i)));
             } catch (JobNotFoundException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
         }
 
         try {
-            invoice = new BankPayment(DatabaseInvoice.getLastId() + 1, jobs,
-                    DatabaseJobseeker.getJobseekerById(jobseekerId), adminFee);
+            if(adminFee == null){
+                invoice = new BankPayment(DatabaseInvoice.getLastId() + 1, jobs,
+                        DatabaseJobseeker.getJobseekerById(jobseekerId));
+            }else {
+                invoice = new BankPayment(DatabaseInvoice.getLastId() + 1, jobs,
+                        DatabaseJobseeker.getJobseekerById(jobseekerId), adminFee);
+            }
             invoice.setTotalFee();
         } catch (JobseekerNotFoundException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
 
         try {
-            status = DatabaseInvoice.addInvoice(invoice);
+            DatabaseInvoice.addInvoice(invoice);
         } catch (OngoingInvoiceAlreadyExistsException e) {
-            e.getMessage();
-        }
-        if (status) {
-            return invoice;
-        } else {
+            System.out.println(e.getMessage());
             return null;
         }
+        return invoice;
+
     }
 
     @RequestMapping(value = "/createEWalletPayment", method = RequestMethod.POST)
     public Invoice createEWalletPayment(
             @RequestParam(value = "jobIdList") ArrayList<Integer> jobIdList,
             @RequestParam(value = "jobseekerId") int jobseekerId,
-            @RequestParam(value = "referralCode") String referralCode
+            @RequestParam(value = "referralCode", required = false) String referralCode
     ) {
         Invoice invoice = null;
         ArrayList<Job> jobs = new ArrayList<>();
-        boolean status = false;
 
         for (var i = 0; i < jobIdList.size(); i++) {
             try {
                 jobs.add(DatabaseJob.getJobById(jobIdList.get(i)));
             } catch (JobNotFoundException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
         }
 
         try {
-            invoice = new EwalletPayment(DatabaseInvoice.getLastId() + 1, jobs,
-                    DatabaseJobseeker.getJobseekerById(jobseekerId),
-                    DatabaseBonus.getBonusByRefferalCode(referralCode));
+            if(referralCode == null){
+                invoice = new EwalletPayment(DatabaseInvoice.getLastId() + 1, jobs,
+                        DatabaseJobseeker.getJobseekerById(jobseekerId));
+            }else{
+                invoice = new EwalletPayment(DatabaseInvoice.getLastId() + 1, jobs,
+                        DatabaseJobseeker.getJobseekerById(jobseekerId),
+                        DatabaseBonus.getBonusByRefferalCode(referralCode));
+            }
             invoice.setTotalFee();
         } catch (JobseekerNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         try {
-            status = DatabaseInvoice.addInvoice(invoice);
+            DatabaseInvoice.addInvoice(invoice);
         } catch (OngoingInvoiceAlreadyExistsException e) {
-            e.printStackTrace();
-        }
-        if (status) {
-            return invoice;
-        } else {
+            System.out.println(e.getMessage());
             return null;
         }
+        return invoice;
     }
 
 }

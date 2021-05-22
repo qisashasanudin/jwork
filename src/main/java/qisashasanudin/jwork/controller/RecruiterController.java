@@ -19,7 +19,7 @@ public class RecruiterController {
         try {
             recruiter = DatabaseRecruiter.getRecruiterById(id);
         } catch (RecruiterNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         return recruiter;
@@ -39,7 +39,7 @@ public class RecruiterController {
         try{
             DatabaseRecruiter.addRecruiter(recruiter);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return null;
         }
         return recruiter;
