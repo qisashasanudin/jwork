@@ -60,14 +60,13 @@ public class DatabaseBonus {
      *
      * @return result
      */
-    public static Bonus getBonusByRefferalCode(String refferalCode) {
-        Bonus result = null;
+    public static Bonus getBonusByRefferalCode(String referralCode) {
         for (Bonus bonus : BONUS_DATABASE) {
-            if (refferalCode.equals(bonus.getReferralCode())) {
-                result = bonus;
+            if (referralCode.equals(bonus.getReferralCode())) {
+                return bonus;
             }
         }
-        return result;
+        return null;
     }
 
     /**

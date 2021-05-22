@@ -12,6 +12,7 @@ public class BonusController {
     public ArrayList<Bonus> getAllBonus(){
         return(DatabaseBonus.getBonusDatabase());
     }
+
     @RequestMapping(value = "/{referralCode}", method = RequestMethod.GET)
     public Bonus getBonusByReferralCode(@PathVariable String referralCode){
         return(DatabaseBonus.getBonusByRefferalCode(referralCode));
