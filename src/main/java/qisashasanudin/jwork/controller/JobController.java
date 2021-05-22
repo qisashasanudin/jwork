@@ -44,11 +44,12 @@ public class JobController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Job addJob(@RequestParam(value="name") String name,
-                      @RequestParam(value="fee") int fee,
-                      @RequestParam(value="category") JobCategory category,
-                      @RequestParam(value="recruiterId") int recruiterId)
-    {
+    public Job addJob(
+            @RequestParam(value="name") String name,
+            @RequestParam(value="fee") int fee,
+            @RequestParam(value="category") JobCategory category,
+            @RequestParam(value="recruiterId") int recruiterId
+    ){
         Job job = null;
         try {
             job = new Job(DatabaseJob.getLastId()+1, name, fee,  category, DatabaseRecruiter.getRecruiterById(recruiterId));

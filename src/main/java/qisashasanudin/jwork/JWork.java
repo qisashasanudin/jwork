@@ -39,9 +39,29 @@ public class JWork {
                         System.out.println(e.getMessage());
                 }
 
+                try{
+                        DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com", "Sedih6969"));
+                }catch (EmailAlreadyExistsException e){
+                        System.out.println(e.getMessage());
+                }
+
+                Invoice invoice = null;
+                try{
+                        invoice = new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobByRecruiter(3), DatabaseJobseeker.getJobseekerById(1));
+                        invoice.setTotalFee();
+                }catch(JobseekerNotFoundException e){
+                        System.out.println(e.getMessage());
+                }
+
+                try{
+                        DatabaseInvoice.addInvoice(invoice);
+                }catch(OngoingInvoiceAlreadyExistsException e){
+                        System.out.println(e.getMessage());
+                }
+
                 SpringApplication.run(JWork.class, args);
         }
 
-        
+
 
 }
