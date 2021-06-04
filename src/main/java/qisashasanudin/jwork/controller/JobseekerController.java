@@ -2,6 +2,11 @@ package qisashasanudin.jwork.controller;
 
 import qisashasanudin.jwork.*;
 import org.springframework.web.bind.annotation.*;
+import qisashasanudin.jwork.database.DatabaseJobseeker;
+import qisashasanudin.jwork.exception.EmailAlreadyExistsException;
+import qisashasanudin.jwork.exception.InvalidEmailException;
+import qisashasanudin.jwork.exception.InvalidPasswordException;
+import qisashasanudin.jwork.exception.JobseekerNotFoundException;
 
 import java.util.ArrayList;
 
@@ -37,19 +42,27 @@ public class JobseekerController {
         Jobseeker jobseeker = new Jobseeker(DatabaseJobseeker.getLastId()+1, name, email, password);
         try {
             DatabaseJobseeker.addJobseeker(jobseeker);
-        } catch (EmailAlreadyExistsException e) {
+        } catch (EmailAlreadyExistsException | InvalidEmailException | InvalidPasswordException e) {
             System.out.println(e.getMessage());
             return null;
         }
         return jobseeker;
     }
 
+
+
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Jobseeker loginJobseeker(
             @RequestParam(value="email") String email,
             @RequestParam(value="password") String password
     ){
-        return(DatabaseJobseeker.getJobseekerLogin(email, password));
+        try {
+            return(DatabaseJobseeker.getJobseekerLogin(email, password));
+        } catch (InvalidEmailException | InvalidPasswordException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 }
 

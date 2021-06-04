@@ -2,64 +2,34 @@ package qisashasanudin.jwork;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import qisashasanudin.jwork.database.DatabaseJob;
+import qisashasanudin.jwork.database.DatabaseRecruiter;
+import qisashasanudin.jwork.database.postgre.DatabaseConnectionPostgre;
+import qisashasanudin.jwork.exception.RecruiterNotFoundException;
 
 @SpringBootApplication
 public class JWork {
 
         public static void main(String[] args) {
-                Location loc1 = new Location("Jawa Barat", "Depok", "Kukusan");
+
+                Location loc1 = new Location("Jawa Barat", "Sukabumi", "Cikole");
                 Location loc2 = new Location("DKI Jakarta", "Jakarta Selatan", "Kemang");
-                Location loc3 = new Location("Jawa Barat", "Sukabumi", "Cikole");
+                Location loc3 = new Location("Jawa Barat", "Depok", "Kukusan");
 
-                DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Qisas", "q.t.hasanudin@gmail.com", "087815710719", loc1));
-                DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Tazkia", "qisas.tazkia@ui.ac.id", "081234567890", loc2));
-                DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Hasanudin", "udin.watcher@gmail.com", "086969696969", loc3));
+                DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Hary", "hary@ui.ac.id", "081234567890", loc1));
 
                 try{
-                        DatabaseJob.addJob(new Job(DatabaseJob.getLastId()+1, "Mobile Developer", 8000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
+                        DatabaseJob.addJob(new Job(DatabaseJob.getLastId()+1, "Mobile Developer", 7000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(1)));
                 }catch (RecruiterNotFoundException e){
                         System.out.println(e.getMessage());
                 }
 
                 try{
-                        DatabaseJob.addJob(new Job(DatabaseJob.getLastId()+1, "Web Developer", 8000000, JobCategory.FrontEnd, DatabaseRecruiter.getRecruiterById(2)));
+                        DatabaseJob.addJob(new Job(DatabaseJob.getLastId()+1, "Data Analyst", 8000000, JobCategory.BackEnd, DatabaseRecruiter.getRecruiterById(1)));
                 }catch (RecruiterNotFoundException e){
-                        System.out.println(e.getMessage());
-                }
-
-                try{
-                        DatabaseJob.addJob(new Job(DatabaseJob.getLastId()+1, "Data Analyst", 8000000, JobCategory.DataAnalyst, DatabaseRecruiter.getRecruiterById(3)));
-                }catch (RecruiterNotFoundException e){
-                        System.out.println(e.getMessage());
-                }
-
-                try{
-                        DatabaseJob.addJob(new Job(DatabaseJob.getLastId()+1, "UI/UX Designer", 8000000, JobCategory.UIUX, DatabaseRecruiter.getRecruiterById(3)));
-                }catch (RecruiterNotFoundException e){
-                        System.out.println(e.getMessage());
-                }
-
-                try{
-                        DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Qisas Hasanudin", "q.t.hasanudin@gmail.com", "Sedih6969"));
-                }catch (EmailAlreadyExistsException e){
-                        System.out.println(e.getMessage());
-                }
-
-                try{
-                        DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Hary Ridart", "hary@gmail.com", "netlab"));
-                }catch (EmailAlreadyExistsException e){
-                        System.out.println(e.getMessage());
-                }
-
-                try {
-                        DatabaseBonus.addBonus(new Bonus(DatabaseBonus.getLastId(), "BONUS1", 500000, 8000000, true));
-                }catch(ReferralCodeAlreadyExistsException e){
                         System.out.println(e.getMessage());
                 }
 
                 SpringApplication.run(JWork.class, args);
         }
-
-
-
 }

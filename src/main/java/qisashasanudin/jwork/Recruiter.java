@@ -23,7 +23,7 @@ public class Recruiter {
     public Recruiter(int id, String name, String email, String phoneNumber, Location location) {
         this.id = id;
         this.name = name;
-        this.email = email;
+        setEmail(email);
         this.phoneNumber = phoneNumber;
         this.location = location;
     }

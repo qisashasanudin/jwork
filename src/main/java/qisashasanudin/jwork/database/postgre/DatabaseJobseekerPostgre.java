@@ -1,4 +1,6 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.database.postgre;
+
+import qisashasanudin.jwork.Jobseeker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
 
     private static ArrayList<Jobseeker> JOBSEEKER_DATABASE = new ArrayList<>();
 
-    public static ArrayList<Jobseeker> getDatabaseJobseeker() {
+    public static ArrayList<Jobseeker> getJobseekerDatabase() {
 
         JOBSEEKER_DATABASE.clear();
         Connection c = connection();
@@ -37,7 +39,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return JOBSEEKER_DATABASE;
     }
 
-    public static Jobseeker insertJobseeker(String name, String email, String password) {
+    public static Jobseeker addJobseeker(String name, String email, String password) {
         Connection c = connection();
         PreparedStatement stmt;
         Jobseeker jobseeker = null;
@@ -62,7 +64,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return jobseeker;
     }
 
-    public static int getLastJobseekerId() {
+    public static int getLastId() {
         Connection c = connection();
         PreparedStatement stmt;
         int id = 0;

@@ -1,4 +1,6 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.exception;
+
+import qisashasanudin.jwork.Bonus;
 
 public class ReferralCodeAlreadyExistsException extends Exception {
 

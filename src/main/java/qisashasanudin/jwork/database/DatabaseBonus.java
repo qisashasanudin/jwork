@@ -1,4 +1,8 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.database;
+
+import qisashasanudin.jwork.Bonus;
+import qisashasanudin.jwork.exception.BonusNotFoundException;
+import qisashasanudin.jwork.exception.ReferralCodeAlreadyExistsException;
 
 import java.util.ArrayList;
 

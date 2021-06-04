@@ -1,4 +1,8 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.database;
+
+import qisashasanudin.jwork.Job;
+import qisashasanudin.jwork.JobCategory;
+import qisashasanudin.jwork.exception.JobNotFoundException;
 
 import java.util.ArrayList;
 

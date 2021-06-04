@@ -1,4 +1,6 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.exception;
+
+import qisashasanudin.jwork.Invoice;
 
 public class OngoingInvoiceAlreadyExistsException extends Exception {
 

@@ -1,4 +1,4 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.exception;
 
 public class RecruiterNotFoundException extends Exception{
     private int recruiter_error;

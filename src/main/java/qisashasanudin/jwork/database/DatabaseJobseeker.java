@@ -1,4 +1,10 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.database;
+
+import qisashasanudin.jwork.*;
+import qisashasanudin.jwork.exception.EmailAlreadyExistsException;
+import qisashasanudin.jwork.exception.InvalidEmailException;
+import qisashasanudin.jwork.exception.InvalidPasswordException;
+import qisashasanudin.jwork.exception.JobseekerNotFoundException;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

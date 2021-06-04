@@ -1,4 +1,4 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.exception;
 
 public class JobseekerNotFoundException extends Exception {
     private int jobseeker_error;

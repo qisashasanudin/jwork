@@ -1,4 +1,9 @@
-package qisashasanudin.jwork;
+package qisashasanudin.jwork.database;
+
+import qisashasanudin.jwork.Invoice;
+import qisashasanudin.jwork.exception.InvoiceNotFoundException;
+import qisashasanudin.jwork.InvoiceStatus;
+import qisashasanudin.jwork.exception.OngoingInvoiceAlreadyExistsException;
 
 import java.util.ArrayList;
 
@@ -43,7 +48,7 @@ public class DatabaseInvoice {
         return temp;
     }
 
-    public static boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistsException{
+    public static boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistsException {
         for (Invoice element : INVOICE_DATABASE) {
             if (element.getInvoiceStatus() == InvoiceStatus.Ongoing && element.getJobseeker().getId() == invoice.getJobseeker().getId()) {
                 throw new OngoingInvoiceAlreadyExistsException(invoice);
