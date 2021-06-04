@@ -1,6 +1,8 @@
 package qisashasanudin.jwork;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Praktikum OOP - Program "JWork" class DatabaseJobseeker: berfungsi untuk
@@ -61,15 +63,30 @@ public class DatabaseJobseeker {
      * @param jobseeker
      */
 
-    public static boolean addJobseeker(Jobseeker jobseeker) throws EmailAlreadyExistsException {
+    public static boolean addJobseeker(Jobseeker jobseeker) throws EmailAlreadyExistsException, InvalidEmailException, InvalidPasswordException {
         for (Jobseeker element : JOBSEEKER_DATABASE) {
             if (element.getEmail() == jobseeker.getEmail()) {
                 throw new EmailAlreadyExistsException(jobseeker);
             }
         }
-        JOBSEEKER_DATABASE.add(jobseeker);
-        lastId = jobseeker.getId();
-        return true;
+
+        String emailRegex = "\\A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z";
+        Pattern emailPattern = Pattern.compile(emailRegex);
+        Matcher emailMatcher = emailPattern.matcher(jobseeker.getEmail());
+
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
+        Pattern passwordPattern = Pattern.compile(passwordRegex);
+        Matcher passwordMatcher = passwordPattern.matcher(jobseeker.getPassword());
+
+        if (!emailMatcher.matches()) {
+            throw new InvalidEmailException(jobseeker.getEmail());
+        }else if(!passwordMatcher.matches()){
+            throw new InvalidPasswordException();
+        }else{
+            JOBSEEKER_DATABASE.add(jobseeker);
+            lastId = jobseeker.getId();
+            return true;
+        }
     }
 
     /**
@@ -92,12 +109,28 @@ public class DatabaseJobseeker {
         return status;
     }
 
-    public static Jobseeker getJobseekerLogin(String email, String password){
-        for (Jobseeker jobseeker : JOBSEEKER_DATABASE) {
-            if (jobseeker.getEmail().equals(email) && jobseeker.getPassword().equals(password)) {
-                return jobseeker;
+    public static Jobseeker getJobseekerLogin(String email, String password) throws InvalidEmailException, InvalidPasswordException {
+
+        String emailRegex = "\\A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z";
+        Pattern emailPattern = Pattern.compile(emailRegex);
+        Matcher emailMatcher = emailPattern.matcher(email);
+
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
+        Pattern passwordPattern = Pattern.compile(passwordRegex);
+        Matcher passwordMatcher = passwordPattern.matcher(password);
+
+        if (!emailMatcher.matches()) {
+            throw new InvalidEmailException(email);
+        }else if(!passwordMatcher.matches()){
+            throw new InvalidPasswordException();
+        }else{
+            for (Jobseeker jobseeker : JOBSEEKER_DATABASE) {
+                if (jobseeker.getEmail().equals(email) && jobseeker.getPassword().equals(password)) {
+                    return jobseeker;
+                }
             }
         }
+
         return null;
     }
 }
