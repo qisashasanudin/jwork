@@ -45,18 +45,12 @@ public class DatabaseJob {
      */
 
     public static Job getJobById(int id) throws JobNotFoundException {
-        Job result = null;
         for (Job element : JOB_DATABASE) {
             if (element.getId() == id) {
-                result = element;
-                return result;
+                return element;
             }
         }
-        if (result == null){
-            throw new JobNotFoundException(id);
-        }
-
-        return result;
+        throw new JobNotFoundException(id);
     }
 
     /**
@@ -122,7 +116,7 @@ public class DatabaseJob {
                 break;
             }
         }
-        if (!status){
+        if (!status) {
             throw new JobNotFoundException(id);
         }
 

@@ -49,18 +49,14 @@ public class DatabaseJobseeker {
      * @return lastId
      */
     public static Jobseeker getJobseekerById(int id) throws JobseekerNotFoundException {
-        Jobseeker result = null;
         for (Jobseeker jobseeker : JOBSEEKER_DATABASE) {
             if (jobseeker.getId() == id) {
-                result = jobseeker;
-                return result;
+                return jobseeker;
             }
         }
-        if (result == null){
-            throw new JobseekerNotFoundException(id);
-        }
 
-        return result;
+        throw new JobseekerNotFoundException(id);
+
     }
 
     /**
@@ -69,7 +65,8 @@ public class DatabaseJobseeker {
      * @param jobseeker
      */
 
-    public static boolean addJobseeker(Jobseeker jobseeker) throws EmailAlreadyExistsException, InvalidEmailException, InvalidPasswordException {
+    public static boolean addJobseeker(Jobseeker jobseeker)
+            throws EmailAlreadyExistsException, InvalidEmailException, InvalidPasswordException {
         for (Jobseeker element : JOBSEEKER_DATABASE) {
             if (element.getEmail() == jobseeker.getEmail()) {
                 throw new EmailAlreadyExistsException(jobseeker);
@@ -86,9 +83,9 @@ public class DatabaseJobseeker {
 
         if (!emailMatcher.matches()) {
             throw new InvalidEmailException(jobseeker.getEmail());
-        }else if(!passwordMatcher.matches()){
+        } else if (!passwordMatcher.matches()) {
             throw new InvalidPasswordException();
-        }else{
+        } else {
             JOBSEEKER_DATABASE.add(jobseeker);
             lastId = jobseeker.getId();
             return true;
@@ -108,14 +105,15 @@ public class DatabaseJobseeker {
                 return true;
             }
         }
-        if (!status){
+        if (!status) {
             throw new JobseekerNotFoundException(id);
         }
 
         return status;
     }
 
-    public static Jobseeker getJobseekerLogin(String email, String password) throws InvalidEmailException, InvalidPasswordException {
+    public static Jobseeker getJobseekerLogin(String email, String password)
+            throws InvalidEmailException, InvalidPasswordException {
 
         String emailRegex = "\\A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z";
         Pattern emailPattern = Pattern.compile(emailRegex);
@@ -127,9 +125,9 @@ public class DatabaseJobseeker {
 
         if (!emailMatcher.matches()) {
             throw new InvalidEmailException(email);
-        }else if(!passwordMatcher.matches()){
+        } else if (!passwordMatcher.matches()) {
             throw new InvalidPasswordException();
-        }else{
+        } else {
             for (Jobseeker jobseeker : JOBSEEKER_DATABASE) {
                 if (jobseeker.getEmail().equals(email) && jobseeker.getPassword().equals(password)) {
                     return jobseeker;

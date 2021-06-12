@@ -44,18 +44,12 @@ public class DatabaseBonus {
      * @return result
      */
     public static Bonus getBonusById(int id) throws BonusNotFoundException {
-        Bonus result = null;
         for (Bonus bonus : BONUS_DATABASE) {
             if (id == bonus.getId()) {
-                result = bonus;
-                return result;
+                return bonus;
             }
         }
-        if (result == null){
-            throw new BonusNotFoundException(id);
-        }
-
-        return result;
+        throw new BonusNotFoundException(id);
     }
 
     /**
@@ -112,15 +106,14 @@ public class DatabaseBonus {
     }
 
     public static boolean removeBonus(int id) throws BonusNotFoundException {
-        try{
+        try {
             for (Bonus bonus : BONUS_DATABASE) {
                 if (bonus.getId() == id) {
                     BONUS_DATABASE.remove(bonus);
                     return true;
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new BonusNotFoundException(id);
         }
         return false;
