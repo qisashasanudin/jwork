@@ -2,9 +2,8 @@ package qisashasanudin.jwork;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import qisashasanudin.jwork.database.DatabaseJob;
-import qisashasanudin.jwork.database.DatabaseRecruiter;
-import qisashasanudin.jwork.database.postgre.DatabaseConnectionPostgre;
+import qisashasanudin.jwork.database.legacy.DatabaseJob;
+import qisashasanudin.jwork.database.legacy.DatabaseRecruiter;
 import qisashasanudin.jwork.exception.RecruiterNotFoundException;
 
 @SpringBootApplication

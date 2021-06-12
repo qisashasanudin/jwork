@@ -1,4 +1,4 @@
-package qisashasanudin.jwork.database;
+package qisashasanudin.jwork.database.legacy;
 
 import qisashasanudin.jwork.Bonus;
 import qisashasanudin.jwork.exception.BonusNotFoundException;

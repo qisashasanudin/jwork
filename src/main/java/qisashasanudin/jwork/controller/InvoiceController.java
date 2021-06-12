@@ -2,10 +2,10 @@ package qisashasanudin.jwork.controller;
 
 import qisashasanudin.jwork.*;
 import org.springframework.web.bind.annotation.*;
-import qisashasanudin.jwork.database.DatabaseBonus;
-import qisashasanudin.jwork.database.DatabaseInvoice;
-import qisashasanudin.jwork.database.DatabaseJob;
-import qisashasanudin.jwork.database.DatabaseJobseeker;
+import qisashasanudin.jwork.database.legacy.DatabaseBonus;
+import qisashasanudin.jwork.database.legacy.DatabaseInvoice;
+import qisashasanudin.jwork.database.legacy.DatabaseJob;
+import qisashasanudin.jwork.database.legacy.DatabaseJobseeker;
 import qisashasanudin.jwork.exception.InvoiceNotFoundException;
 import qisashasanudin.jwork.exception.JobNotFoundException;
 import qisashasanudin.jwork.exception.JobseekerNotFoundException;

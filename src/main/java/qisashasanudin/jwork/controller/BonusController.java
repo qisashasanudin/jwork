@@ -2,7 +2,7 @@ package qisashasanudin.jwork.controller;
 
 import qisashasanudin.jwork.*;
 import org.springframework.web.bind.annotation.*;
-import qisashasanudin.jwork.database.DatabaseBonus;
+import qisashasanudin.jwork.database.legacy.DatabaseBonus;
 import qisashasanudin.jwork.exception.ReferralCodeAlreadyExistsException;
 
 import java.util.ArrayList;

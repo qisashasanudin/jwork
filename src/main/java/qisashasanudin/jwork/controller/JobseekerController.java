@@ -1,12 +1,8 @@
 package qisashasanudin.jwork.controller;
 
-import qisashasanudin.jwork.*;
 import org.springframework.web.bind.annotation.*;
-import qisashasanudin.jwork.database.DatabaseJobseeker;
-import qisashasanudin.jwork.exception.EmailAlreadyExistsException;
-import qisashasanudin.jwork.exception.InvalidEmailException;
-import qisashasanudin.jwork.exception.InvalidPasswordException;
-import qisashasanudin.jwork.exception.JobseekerNotFoundException;
+import qisashasanudin.jwork.Jobseeker;
+import qisashasanudin.jwork.database.postgre.DatabaseJobseekerPostgre;
 
 import java.util.ArrayList;
 
@@ -16,21 +12,12 @@ public class JobseekerController {
 
     @RequestMapping("")
     public ArrayList<Jobseeker> getAllJobseeker() {
-        ArrayList<Jobseeker> jobseeker = null;
-        jobseeker = DatabaseJobseeker.getJobseekerDatabase();
-        return jobseeker;
+        return DatabaseJobseekerPostgre.getJobseekerDatabase();
     }
 
     @RequestMapping("/{id}")
     public Jobseeker getJobseekerById(@PathVariable int id) {
-        Jobseeker jobseeker = null;
-        try {
-            jobseeker = DatabaseJobseeker.getJobseekerById(id);
-        } catch (JobseekerNotFoundException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        return jobseeker;
+        return DatabaseJobseekerPostgre.getJobseekerById(id);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -39,30 +26,15 @@ public class JobseekerController {
             @RequestParam(value="email") String email,
             @RequestParam(value="password") String password
     ){
-        Jobseeker jobseeker = new Jobseeker(DatabaseJobseeker.getLastId()+1, name, email, password);
-        try {
-            DatabaseJobseeker.addJobseeker(jobseeker);
-        } catch (EmailAlreadyExistsException | InvalidEmailException | InvalidPasswordException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        return jobseeker;
+        return DatabaseJobseekerPostgre.addJobseeker(name, email, password);
     }
-
-
-
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Jobseeker loginJobseeker(
             @RequestParam(value="email") String email,
             @RequestParam(value="password") String password
     ){
-        try {
-            return(DatabaseJobseeker.getJobseekerLogin(email, password));
-        } catch (InvalidEmailException | InvalidPasswordException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        return DatabaseJobseekerPostgre.getJobseekerLogin(email, password);
     }
 }
 

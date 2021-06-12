@@ -2,8 +2,8 @@ package qisashasanudin.jwork.controller;
 
 import qisashasanudin.jwork.*;
 import org.springframework.web.bind.annotation.*;
-import qisashasanudin.jwork.database.DatabaseJob;
-import qisashasanudin.jwork.database.DatabaseRecruiter;
+import qisashasanudin.jwork.database.legacy.DatabaseJob;
+import qisashasanudin.jwork.database.legacy.DatabaseRecruiter;
 import qisashasanudin.jwork.exception.JobNotFoundException;
 import qisashasanudin.jwork.exception.RecruiterNotFoundException;
 

@@ -16,14 +16,17 @@ public class DatabaseConnectionPostgre {
         try{
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(db_url + db_name, db_user, db_password);
+
+            if(c != null){
+                System.out.println("Connected to database successfully");
+            }
+
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Failed to connect to database.");
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-
-        System.out.println("Opened database successfully");
         return c;
     }
 }
