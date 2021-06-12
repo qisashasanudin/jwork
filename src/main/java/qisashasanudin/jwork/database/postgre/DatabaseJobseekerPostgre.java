@@ -3,34 +3,12 @@ package qisashasanudin.jwork.database.postgre;
 import qisashasanudin.jwork.Jobseeker;
 
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
 
     private static ArrayList<Jobseeker> JOBSEEKER_DATABASE = new ArrayList<>();
-
-    public static int getLastId() {
-        Connection c = connection();
-        PreparedStatement stmt;
-        int id = 0;
-        try {
-            String sql = "SELECT id FROM jobseeker;";
-            stmt = c.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                id = rs.getInt(1);
-            }
-            stmt.close();
-            c.close();
-            return id;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return id;
-    }
 
     public static ArrayList<Jobseeker> getJobseekerDatabase() {
         JOBSEEKER_DATABASE.clear();
@@ -52,7 +30,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
                 name = rs.getString("name");
                 email = rs.getString("email");
                 password = rs.getString("password");
-                joinDateTS = rs.getTimestamp("joindate");
+                joinDateTS = rs.getTimestamp("joinDate");
                 joinDate.setTimeInMillis(joinDateTS.getTime());
                 jobseeker = new Jobseeker(id, name, email, password, joinDate);
                 JOBSEEKER_DATABASE.add(jobseeker);
@@ -65,29 +43,24 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return JOBSEEKER_DATABASE;
     }
 
-    public static Jobseeker addJobseeker(String name, String email, String password) {
+    public static int getLastId() {
         Connection c = connection();
         PreparedStatement stmt;
-        int id = getLastId();
-        Jobseeker jobseeker = null;
-        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        int id = 0;
         try {
-            jobseeker = new Jobseeker(id, name, email, password);
-            String sql = "INSERT INTO jobseeker (id, name, email, password, joindate) VALUES (?,?,?,?,?) RETURNING id;";
+            String sql = "SELECT id FROM jobseeker;";
             stmt = c.prepareStatement(sql);
-            stmt.setInt(1, jobseeker.getId());
-            stmt.setString(2, jobseeker.getName());
-            stmt.setString(3, jobseeker.getEmail());
-            stmt.setString(4, jobseeker.getPassword());
-            stmt.setTimestamp(5, ts, jobseeker.getJoinDate());
             ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
             stmt.close();
             c.close();
-            return jobseeker;
-        } catch (Exception e) {
+            return id;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return jobseeker;
+        return id;
     }
 
     public static Jobseeker getJobseekerById(int jobseekerId) {
@@ -111,7 +84,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
                 name = rs.getString("name");
                 email = rs.getString("email");
                 password = rs.getString("password");
-                joinDateTS = rs.getTimestamp("joindate");
+                joinDateTS = rs.getTimestamp("joinDate");
                 joinDate.setTimeInMillis(joinDateTS.getTime());
             }
             stmt.close();
@@ -123,33 +96,24 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return jobseeker;
     }
 
-    public static Jobseeker getJobseekerLogin(String email_new, String password_new) {
+    public static Jobseeker addJobseeker(String name, String email, String password) {
         Connection c = connection();
         PreparedStatement stmt;
-        int id = 0;
-        String name = null;
-        String email = null;
-        String password = null;
-        Timestamp joinDateTS = null;
-        Calendar joinDate = Calendar.getInstance();
+        int id = getLastId() + 1;
         Jobseeker jobseeker = null;
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
         try {
-            String sql = "SELECT id, name, email, password, joindate FROM jobseeker WHERE email=? AND password=?;";
+            jobseeker = new Jobseeker(id, name, email, password);
+            String sql = "INSERT INTO jobseeker (id, name, email, password, joinDate) VALUES (?,?,?,?,?) RETURNING id;";
             stmt = c.prepareStatement(sql);
-            stmt.setString(1, email_new);
-            stmt.setString(2, password_new);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                id = rs.getInt("id");
-                name = rs.getString("name");
-                email = rs.getString("email");
-                password = rs.getString("password");
-                joinDateTS = rs.getTimestamp("joindate");
-                joinDate.setTimeInMillis(joinDateTS.getTime());
-            }
+            stmt.setInt(1, jobseeker.getId());
+            stmt.setString(2, jobseeker.getName());
+            stmt.setString(3, jobseeker.getEmail());
+            stmt.setString(4, jobseeker.getPassword());
+            stmt.setTimestamp(5, ts, jobseeker.getJoinDate());
+            stmt.executeQuery();
             stmt.close();
             c.close();
-            jobseeker = new Jobseeker(id, name, email, password, joinDate);
             return jobseeker;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -173,4 +137,39 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         }
         return false;
     }
+
+    public static Jobseeker getJobseekerLogin(String email_new, String password_new) {
+        Connection c = connection();
+        PreparedStatement stmt;
+        int id = 0;
+        String name = null;
+        String email = null;
+        String password = null;
+        Timestamp joinDateTS = null;
+        Calendar joinDate = Calendar.getInstance();
+        Jobseeker jobseeker = null;
+        try {
+            String sql = "SELECT * FROM jobseeker WHERE email=? AND password=?;";
+            stmt = c.prepareStatement(sql);
+            stmt.setString(1, email_new);
+            stmt.setString(2, password_new);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt("id");
+                name = rs.getString("name");
+                email = rs.getString("email");
+                password = rs.getString("password");
+                joinDateTS = rs.getTimestamp("joinDate");
+                joinDate.setTimeInMillis(joinDateTS.getTime());
+            }
+            stmt.close();
+            c.close();
+            jobseeker = new Jobseeker(id, name, email, password, joinDate);
+            return jobseeker;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return jobseeker;
+    }
+
 }
