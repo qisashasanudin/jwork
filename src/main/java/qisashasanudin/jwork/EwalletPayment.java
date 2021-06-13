@@ -4,28 +4,51 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
- * Praktikum OOP - Program "JWork" class EwalletPayment: berfungsi untuk
+ * Praktikum OOP - Program "JWork" - class EwalletPayment: berfungsi untuk
  * meng-generate object yang merepresentasikan pembayaran dengan E-Wallet
  *
  * @author Qisas Tazkia Hasanudin
- * @version 01-04-2021
+ * @version 1.0
  */
 public class EwalletPayment extends Invoice {
+    // instance variables
     private static final PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
     private Bonus bonus;
 
     /**
-     * Constructor untuk object dari class EwalletPayment
+     * Constructor 1 untuk object dari class EwalletPayment
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
      */
     public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker) {
         super(id, jobs, jobseeker);
     }
 
+    /**
+     * Constructor 2 untuk object dari class EwalletPayment
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
+     * @param bonus
+     */
     public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, Bonus bonus) {
         super(id, jobs, jobseeker);
         this.bonus = bonus;
     }
 
+    /**
+     * Constructor 3 untuk object dari class EwalletPayment
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
+     * @param bonus
+     * @param totalFee
+     * @param status
+     */
     public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, Bonus bonus, int totalFee,
             InvoiceStatus status) {
         super(id, jobs, jobseeker, totalFee, status);

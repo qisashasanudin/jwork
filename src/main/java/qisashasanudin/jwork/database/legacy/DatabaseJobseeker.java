@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * meng-generate object yang berisi list Jobseeker yang ada
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public class DatabaseJobseeker {

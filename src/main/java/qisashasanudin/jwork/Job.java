@@ -1,11 +1,11 @@
 package qisashasanudin.jwork;
 
 /**
- * Praktikum OOP - Program "JWork" class Recruiter: berfungsi untuk
+ * Praktikum OOP - Program "JWork" - class Recruiter: berfungsi untuk
  * meng-generate object yang merepresentasikan sebuah pekerjaan
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public class Job {

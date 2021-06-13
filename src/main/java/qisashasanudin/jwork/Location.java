@@ -1,11 +1,11 @@
 package qisashasanudin.jwork;
 
 /**
- * Praktikum OOP - Program "JWork" class Location: berfungsi untuk meng-generate
- * object yang merepresentasikan lokasi tertentu
+ * Praktikum OOP - Program "JWork" - class Location: berfungsi untuk
+ * meng-generate object yang merepresentasikan lokasi tertentu
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public class Location {
@@ -16,6 +16,10 @@ public class Location {
 
     /**
      * Constructor untuk object dari class Location
+     * 
+     * @param province
+     * @param city
+     * @param description
      */
     public Location(String province, String city, String description) {
         this.province = province;

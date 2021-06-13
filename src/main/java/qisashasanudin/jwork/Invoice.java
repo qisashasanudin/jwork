@@ -5,11 +5,11 @@ import java.util.GregorianCalendar;
 import java.util.ArrayList;
 
 /**
- * Praktikum OOP - Program "JWork" class Invoice: berfungsi untuk meng-generate
- * object yang merepresentasikan bukti pengiriman gaji
+ * Praktikum OOP - Program "JWork" - class Invoice: berfungsi untuk
+ * meng-generate object yang merepresentasikan bukti pengiriman gaji
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public abstract class Invoice {
@@ -22,7 +22,11 @@ public abstract class Invoice {
     private InvoiceStatus invoiceStatus;
 
     /**
-     * Constructor untuk object dari class Invoice
+     * Constructor 1 untuk object dari class Invoice
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
      */
     public Invoice(int id, ArrayList<Job> jobs, Jobseeker jobseeker) {
         this.id = id;
@@ -32,6 +36,15 @@ public abstract class Invoice {
         this.invoiceStatus = InvoiceStatus.Ongoing;
     }
 
+    /**
+     * Constructor 2 untuk object dari class Invoice
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
+     * @param totalFee
+     * @param status
+     */
     public Invoice(int id, ArrayList<Job> jobs, Jobseeker jobseeker, int totalFee, InvoiceStatus status) {
         this.id = id;
         this.jobs = jobs;
@@ -122,7 +135,7 @@ public abstract class Invoice {
     }
 
     /**
-     * method setDate, berfungsi sebagai setter untuk mengisi value date
+     * method setDate 1, berfungsi sebagai setter untuk mengisi value date
      *
      * @param date
      */
@@ -130,6 +143,13 @@ public abstract class Invoice {
         this.date = date;
     }
 
+    /**
+     * method setDate 2, berfungsi sebagai setter untuk mengisi value date
+     *
+     * @param year
+     * @param month
+     * @param dayOfMonth
+     */
     public void setDate(int year, int month, int dayOfMonth) {
         this.date = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
@@ -158,9 +178,4 @@ public abstract class Invoice {
     public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
         this.invoiceStatus = invoiceStatus;
     }
-
-    /**
-     * method printData, berfungsi untuk mencetak instance variable ke layar
-     */
-    public abstract String toString();
 }

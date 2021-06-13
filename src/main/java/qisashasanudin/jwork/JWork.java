@@ -6,16 +6,27 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import qisashasanudin.jwork.database.postgre.DatabaseConnectionPostgre;
 
+/**
+ * Praktikum OOP - Program "JWork" - Program yang dapat digunakan untuk mengatur
+ * hubungan antara pegawai dan perekrut pada suatu perusahaan.
+ *
+ * @author Qisas Tazkia Hasanudin
+ * @version 1.0
+ */
+
 @SpringBootApplication
 public class JWork {
 
+        /**
+         * method main, berfungsi untuk melakukan inisialisasi saat program baru
+         * dinyalakan.
+         *
+         * @param args
+         */
         public static void main(String[] args) {
-                // TODO: buat JavaDoc
-
-                Location loc1 = new Location("Jawa Barat", "Sukabumi", "Cikole");
-                // Location loc2 = new Location("DKI Jakarta", "Jakarta Selatan", "Kemang");
-                // Location loc3 = new Location("Jawa Barat", "Depok", "Kukusan");
-
+                /**
+                 * membuat tabel baru di dalam database apabila belum ada
+                 */
                 Connection c = null;
                 Statement stmt = null;
                 String sql = "";
@@ -76,6 +87,10 @@ public class JWork {
                         System.err.println(e.getClass().getName() + ": " + e.getMessage());
                         System.exit(0);
                 }
+
+                // Location loc1 = new Location("Jawa Barat", "Sukabumi", "Cikole");
+                // Location loc2 = new Location("DKI Jakarta", "Jakarta Selatan", "Kemang");
+                // Location loc3 = new Location("Jawa Barat", "Depok", "Kukusan");
 
                 // Recruiter recruiter1 = new Recruiter(DatabaseRecruiterPostgre.getLastId()+1,
                 // "Hary", "hary@ui.ac.id",

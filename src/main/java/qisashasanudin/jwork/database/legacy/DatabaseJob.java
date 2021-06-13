@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * meng-generate object yang berisi list Job yang ada
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public class DatabaseJob {

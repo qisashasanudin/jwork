@@ -1,12 +1,12 @@
 package qisashasanudin.jwork;
 
 /**
- * Praktikum OOP - Program "JWork" class Recruiter: berfungsi untuk
+ * Praktikum OOP - Program "JWork" - class Recruiter: berfungsi untuk
  * meng-generate object yang merepresentasikan seorang perekrut karyawan
  * tertentu
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public class Recruiter {
@@ -19,6 +19,12 @@ public class Recruiter {
 
     /**
      * Constructor untuk object dari class Recruiter
+     * 
+     * @param id
+     * @param name
+     * @param email
+     * @param phoneNumber
+     * @param location
      */
     public Recruiter(int id, String name, String email, String phoneNumber, Location location) {
         this.id = id;

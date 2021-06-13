@@ -1,38 +1,49 @@
 package qisashasanudin.jwork;
 
 /**
- * Enumeration class JobCategory - mengenumerasi semua kategori pekerjaan
+ * Praktikum OOP - Program "JWork" - Enumeration class JobCategory -
+ * mengenumerasi semua kategori pekerjaan
  *
  * @author Qisas Tazkia Hasanudin
- * @version 25-03-2021
+ * @version 1.0
  */
 public enum JobCategory {
+    /**
+     * Semua enumerasi yang ada
+     */
     Network("Network"), FrontEnd("Front End"), BackEnd("Back End"), WebDeveloper("Web Developer"),
     MobileDeveloper("Mobile Developer"), UIUX("UI/UX"), Devops("Devops"), DataScientist("Data Scientist"),
     DataAnalyst("Data Analyst");
 
-    private final String category;
+    private final String text;
 
     /**
      * Constructor untuk enumerator JobCategory
+     * 
+     * @param text
      */
-    private JobCategory(String category) {
-        this.category = category;
+    private JobCategory(String text) {
+        this.text = text;
     }
 
     /**
-     * method toString, berfungsi untuk mengembalikan category dalam bentuk string
+     * /** method toString, berfungsi untuk mengembalikan enumerasi dalam bentuk
+     * string
+     * 
+     * @return text
      */
     public String toString() {
-        return category;
+        return text;
     }
 
     /**
-     * method fromString, berfungsi untuk mengembalikan category dalam bentuk objek
+     * method fromString, berfungsi untuk mengembalikan enumerasi dalam bentuk objek
+     * 
+     * @param input
      */
     public static JobCategory fromString(String input) {
         for (JobCategory element : JobCategory.values()) {
-            if (element.category.equalsIgnoreCase(input)) {
+            if (element.text.equalsIgnoreCase(input)) {
                 return element;
             }
         }

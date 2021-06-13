@@ -1,14 +1,15 @@
 package qisashasanudin.jwork;
 
 /**
- * Praktikum OOP - Program "JWork" class Bonus: berfungsi untuk meng-generate
+ * Praktikum OOP - Program "JWork" - class Bonus: berfungsi untuk meng-generate
  * object yang merepresentasikan bonus gaji
  *
  * @author Qisas Tazkia Hasanudin
- * @version 01-04-2021
+ * @version 1.0
  */
+
 public class Bonus {
-    // instance variables - replace the example below with your own
+    // instance variables
     private int id;
     private String referralCode;
     private int extraFee;
@@ -17,6 +18,12 @@ public class Bonus {
 
     /**
      * Constructor untuk object dari class Bonus
+     * 
+     * @param id
+     * @param referralCode
+     * @param extraFee
+     * @param minTotalFee
+     * @param active
      */
     public Bonus(int id, String referralCode, int extraFee, int minTotalFee, boolean active) {
         this.id = id;

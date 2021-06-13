@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * meng-generate object yang berisi list recruiter yang ada
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public class DatabaseRecruiter {
@@ -47,15 +47,14 @@ public class DatabaseRecruiter {
     public static Recruiter getRecruiterById(int id) throws RecruiterNotFoundException {
         Recruiter result = null;
 
-        try{
+        try {
             for (Recruiter element : RECRUITER_DATABASE) {
                 if (element.getId() == id) {
                     result = element;
                     return result;
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new RecruiterNotFoundException(id);
         }
         return result;
@@ -85,7 +84,7 @@ public class DatabaseRecruiter {
                 return true;
             }
         }
-        if (!status){
+        if (!status) {
             throw new RecruiterNotFoundException(id);
         }
 

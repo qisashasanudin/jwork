@@ -1,36 +1,46 @@
 package qisashasanudin.jwork;
 
 /**
- * Enumeration class InvoiceStatus - mengenumerasi semua jenis status invoice
+ * Praktikum OOP - Program "JWork" - Enumeration class InvoiceStatus -
+ * mengenumerasi semua jenis status invoice
  *
  * @author Qisas Tazkia Hasanudin
- * @version 27-03-2021
+ * @version 1.0
  */
 public enum InvoiceStatus {
+    /**
+     * Semua enumerasi yang ada
+     */
     Ongoing("Ongoing"), Finished("Finished"), Cancelled("Cancelled");
 
-    private final String status;
+    private final String text;
 
     /**
      * Constructor untuk enumerator InvoiceStatus
+     * 
+     * @param text
      */
-    private InvoiceStatus(String status) {
-        this.status = status;
+    private InvoiceStatus(String text) {
+        this.text = text;
     }
 
     /**
-     * method toString, berfungsi untuk mengembalikan status dalam bentuk string
+     * method toString, berfungsi untuk mengembalikan enumerasi dalam bentuk string
+     * 
+     * @return text
      */
     public String toString() {
-        return status;
+        return text;
     }
 
     /**
-     * method fromString, berfungsi untuk mengembalikan status dalam bentuk objek
+     * method fromString, berfungsi untuk mengembalikan enumerasi dalam bentuk objek
+     * 
+     * @param input
      */
     public static InvoiceStatus fromString(String input) {
         for (InvoiceStatus element : InvoiceStatus.values()) {
-            if (element.status.equalsIgnoreCase(input)) {
+            if (element.text.equalsIgnoreCase(input)) {
                 return element;
             }
         }

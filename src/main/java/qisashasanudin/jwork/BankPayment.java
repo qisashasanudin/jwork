@@ -4,28 +4,51 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
- * Praktikum OOP - Program "JWork" class BankPayment: berfungsi untuk
+ * Praktikum OOP - Program "JWork" - class BankPayment: berfungsi untuk
  * meng-generate object yang merepresentasikan pembayaran dengan transfer bank
  *
  * @author Qisas Tazkia Hasanudin
- * @version 03-04-2021
+ * @version 1.0
  */
 public class BankPayment extends Invoice {
+    // instance variables
     private static final PaymentType PAYMENT_TYPE = PaymentType.BankPayment;
     private int adminFee;
 
     /**
-     * Constructor untuk object dari class BankPayment
+     * Constructor 1 untuk object dari class BankPayment
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
      */
     public BankPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker) {
         super(id, jobs, jobseeker);
     }
 
+    /**
+     * Constructor 2 untuk object dari class BankPayment
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
+     * @param adminFee
+     */
     public BankPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, int adminFee) {
         super(id, jobs, jobseeker);
         this.adminFee = adminFee;
     }
 
+    /**
+     * Constructor 3 untuk object dari class BankPayment
+     * 
+     * @param id
+     * @param jobs
+     * @param jobseeker
+     * @param adminFee
+     * @param totalFee
+     * @param status
+     */
     public BankPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, int adminFee, int totalFee,
             InvoiceStatus status) {
         super(id, jobs, jobseeker, totalFee, status);

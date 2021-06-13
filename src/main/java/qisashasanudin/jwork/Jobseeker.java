@@ -7,15 +7,15 @@ import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 
 /**
- * Praktikum OOP - Program "JWork" class Jobseeker: berfungsi untuk
+ * Praktikum OOP - Program "JWork" - class Jobseeker: berfungsi untuk
  * meng-generate object yang merepresentasikan pencari pekerjaan / karyawan
  *
  * @author Qisas Tazkia Hasanudin
- * @version 18-03-2021
+ * @version 1.0
  */
 
 public class Jobseeker {
-    // instance variable
+    // instance variables
     private int id;
     private String name;
     private String email;
@@ -23,7 +23,13 @@ public class Jobseeker {
     public Calendar joinDate;
 
     /**
-     * Constructor untuk object dari class Jobseeker
+     * Constructor 1 untuk object dari class Jobseeker
+     * 
+     * @param id
+     * @param name
+     * @param email
+     * @param password
+     * @param joinDate
      */
     public Jobseeker(int id, String name, String email, String password, Calendar joinDate) {
         this.id = id;
@@ -33,6 +39,17 @@ public class Jobseeker {
         this.joinDate = joinDate;
     }
 
+    /**
+     * Constructor 2 untuk object dari class Jobseeker
+     * 
+     * @param id
+     * @param name
+     * @param email
+     * @param password
+     * @param year
+     * @param month
+     * @param dayOfMonth
+     */
     public Jobseeker(int id, String name, String email, String password, int year, int month, int dayOfMonth) {
         this.id = id;
         this.name = name;
@@ -41,6 +58,14 @@ public class Jobseeker {
         this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
 
+    /**
+     * Constructor 3 untuk object dari class Jobseeker
+     * 
+     * @param id
+     * @param name
+     * @param email
+     * @param password
+     */
     public Jobseeker(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
