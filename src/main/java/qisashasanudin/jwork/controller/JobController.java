@@ -35,6 +35,8 @@ public class JobController {
     public Job addJob(@RequestParam(value = "name") String name, @RequestParam(value = "fee") int fee,
             @RequestParam(value = "category") JobCategory category,
             @RequestParam(value = "recruiterId") int recruiterId) {
-        return DatabaseJobPostgre.addJob(name, fee, category, DatabaseRecruiterPostgre.getRecruiterById(recruiterId));
+        int id = DatabaseJobPostgre.getLastId() + 1;
+        Job job = new Job(id, name, fee, category, DatabaseRecruiterPostgre.getRecruiterById(recruiterId));
+        return DatabaseJobPostgre.addJob(job);
     }
 }

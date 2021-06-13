@@ -23,7 +23,9 @@ public class JobseekerController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Jobseeker registerJobseeker(@RequestParam(value = "name") String name,
             @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
-        return DatabaseJobseekerPostgre.addJobseeker(name, email, password);
+        int id = DatabaseJobseekerPostgre.getLastId() + 1;
+        Jobseeker jobseeker = new Jobseeker(id, name, email, password);
+        return DatabaseJobseekerPostgre.addJobseeker(jobseeker);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)

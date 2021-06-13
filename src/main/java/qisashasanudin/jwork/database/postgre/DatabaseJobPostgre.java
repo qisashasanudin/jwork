@@ -20,7 +20,6 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         int id;
         String name;
         Recruiter recruiter;
-        int recruiterId;
         int fee;
         JobCategory category;
 
@@ -31,10 +30,10 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
             while (rs.next()) {
                 id = rs.getInt("id");
                 name = rs.getString("name");
-                recruiterId = rs.getInt("recruiterId");
-                fee = rs.getInt("fee");
-                category = JobCategory.valueOf(rs.getString("category"));
+                int recruiterId = rs.getInt("recruiter_id");
                 recruiter = DatabaseRecruiterPostgre.getRecruiterById(recruiterId);
+                fee = rs.getInt("fee");
+                category = JobCategory.fromString(rs.getString("category"));
                 job = new Job(id, name, fee, category, recruiter);
 
                 JOB_DATABASE.add(job);
@@ -75,7 +74,6 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
 
         String name;
         Recruiter recruiter;
-        int recruiterId;
         int fee;
         JobCategory category;
 
@@ -87,10 +85,10 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
             while (rs.next()) {
                 id = rs.getInt("id");
                 name = rs.getString("name");
-                recruiterId = rs.getInt("recruiterId");
-                fee = rs.getInt("fee");
-                category = JobCategory.valueOf(rs.getString("category"));
+                int recruiterId = rs.getInt("recruiter_id");
                 recruiter = DatabaseRecruiterPostgre.getRecruiterById(recruiterId);
+                fee = rs.getInt("fee");
+                category = JobCategory.fromString(rs.getString("category"));
                 job = new Job(id, name, fee, category, recruiter);
             }
             stmt.close();
@@ -122,10 +120,11 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
             while (rs.next()) {
                 id = rs.getInt("id");
                 name = rs.getString("name");
-                recruiterId = rs.getInt("recruiterId");
-                fee = rs.getInt("fee");
-                category = JobCategory.valueOf(rs.getString("category"));
+                recruiterId = rs.getInt("recruiter_id");
                 recruiter = DatabaseRecruiterPostgre.getRecruiterById(recruiterId);
+                fee = rs.getInt("fee");
+                category = JobCategory.fromString(rs.getString("category"));
+
                 job = new Job(id, name, fee, category, recruiter);
                 jobs.add(job);
             }
@@ -147,7 +146,7 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         int id;
         String name;
         Recruiter recruiter;
-        int recruiterId;
+
         int fee;
 
         try {
@@ -158,10 +157,11 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
             while (rs.next()) {
                 id = rs.getInt("id");
                 name = rs.getString("name");
-                recruiterId = rs.getInt("recruiterId");
-                fee = rs.getInt("fee");
-                category = JobCategory.valueOf(rs.getString("category"));
+                int recruiterId = rs.getInt("recruiter_id");
                 recruiter = DatabaseRecruiterPostgre.getRecruiterById(recruiterId);
+                fee = rs.getInt("fee");
+                category = JobCategory.fromString(rs.getString("category"));
+
                 job = new Job(id, name, fee, category, recruiter);
                 jobs.add(job);
             }
@@ -174,14 +174,11 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         return jobs;
     }
 
-    public static Job addJob(String name, int fee, JobCategory category, Recruiter recruiter) {
+    public static Job addJob(Job job) {
         Connection c = connection();
         PreparedStatement stmt;
-        int id = getLastId() + 1;
-        Job job = null;
         try {
-            job = new Job(id, name, fee, category, recruiter);
-            String sql = "INSERT INTO job (id, name, fee, category, recruiter) VALUES (?,?,?,?,?) RETURNING id;";
+            String sql = "INSERT INTO job (id, name, fee, category, recruiter_id) VALUES (?,?,?,?,?) RETURNING id;";
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, job.getId());
             stmt.setString(2, job.getName());

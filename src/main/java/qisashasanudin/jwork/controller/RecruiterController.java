@@ -25,8 +25,9 @@ public class RecruiterController {
             @RequestParam(value = "email") String email, @RequestParam(value = "phoneNumber") String phoneNumber,
             @RequestParam(value = "province") String province, @RequestParam(value = "city") String city,
             @RequestParam(value = "description") String description) {
-        return DatabaseRecruiterPostgre.addRecruiter(name, email, phoneNumber,
-                new Location(province, city, description));
+        int id = DatabaseRecruiterPostgre.getLastId() + 1;
+        Recruiter recruiter = new Recruiter(id, name, email, phoneNumber, new Location(province, city, description));
+        return DatabaseRecruiterPostgre.addRecruiter(recruiter);
     }
 
 }

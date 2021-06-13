@@ -30,7 +30,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
                 name = rs.getString("name");
                 email = rs.getString("email");
                 password = rs.getString("password");
-                joinDateTS = rs.getTimestamp("joinDate");
+                joinDateTS = rs.getTimestamp("join_date");
                 joinDate.setTimeInMillis(joinDateTS.getTime());
                 jobseeker = new Jobseeker(id, name, email, password, joinDate);
                 JOBSEEKER_DATABASE.add(jobseeker);
@@ -84,7 +84,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
                 name = rs.getString("name");
                 email = rs.getString("email");
                 password = rs.getString("password");
-                joinDateTS = rs.getTimestamp("joinDate");
+                joinDateTS = rs.getTimestamp("join_date");
                 joinDate.setTimeInMillis(joinDateTS.getTime());
             }
             stmt.close();
@@ -96,15 +96,12 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return jobseeker;
     }
 
-    public static Jobseeker addJobseeker(String name, String email, String password) {
+    public static Jobseeker addJobseeker(Jobseeker jobseeker) {
         Connection c = connection();
         PreparedStatement stmt;
-        int id = getLastId() + 1;
-        Jobseeker jobseeker = null;
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         try {
-            jobseeker = new Jobseeker(id, name, email, password);
-            String sql = "INSERT INTO jobseeker (id, name, email, password, joinDate) VALUES (?,?,?,?,?) RETURNING id;";
+            String sql = "INSERT INTO jobseeker (id, name, email, password, join_date) VALUES (?,?,?,?,?) RETURNING id;";
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, jobseeker.getId());
             stmt.setString(2, jobseeker.getName());
@@ -159,7 +156,7 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
                 name = rs.getString("name");
                 email = rs.getString("email");
                 password = rs.getString("password");
-                joinDateTS = rs.getTimestamp("joinDate");
+                joinDateTS = rs.getTimestamp("join_date");
                 joinDate.setTimeInMillis(joinDateTS.getTime());
             }
             stmt.close();

@@ -27,9 +27,9 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("id");
-                referralCode = rs.getString("referralCode");
-                extraFee = rs.getInt("extraFee");
-                minTotalFee = rs.getInt("minTotalFee");
+                referralCode = rs.getString("referral_code");
+                extraFee = rs.getInt("extra_fee");
+                minTotalFee = rs.getInt("min_total_fee");
                 active = rs.getBoolean("active");
                 bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
                 BONUS_DATABASE.add(bonus);
@@ -80,9 +80,9 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("id");
-                referralCode = rs.getString("referralCode");
-                extraFee = rs.getInt("extraFee");
-                minTotalFee = rs.getInt("minTotalFee");
+                referralCode = rs.getString("referral_code");
+                extraFee = rs.getInt("extra_fee");
+                minTotalFee = rs.getInt("min_total_fee");
                 active = rs.getBoolean("active");
                 bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
             }
@@ -112,9 +112,9 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("id");
-                referralCode = rs.getString("referralCode");
-                extraFee = rs.getInt("extraFee");
-                minTotalFee = rs.getInt("minTotalFee");
+                referralCode = rs.getString("referral_code");
+                extraFee = rs.getInt("extra_fee");
+                minTotalFee = rs.getInt("min_total_fee");
                 active = rs.getBoolean("active");
                 bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
             }
@@ -127,14 +127,11 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return bonus;
     }
 
-    public static Bonus addBonus(String referralCode, int extraFee, int minTotalFee, boolean active) {
+    public static Bonus addBonus(Bonus bonus) {
         Connection c = connection();
         PreparedStatement stmt;
-        int id = getLastId() + 1;
-        Bonus bonus = null;
         try {
-            bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
-            String sql = "INSERT INTO bonus (id, referralCode, extraFee, minTotalFee, active) VALUES (?,?,?,?,?) RETURNING id;";
+            String sql = "INSERT INTO bonus (id, referral_code, extra_fee, min_total_fee, active) VALUES (?,?,?,?,?) RETURNING id;";
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, bonus.getId());
             stmt.setString(2, bonus.getReferralCode());

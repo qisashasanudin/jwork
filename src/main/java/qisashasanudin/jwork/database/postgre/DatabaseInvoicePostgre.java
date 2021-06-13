@@ -1,39 +1,64 @@
 package qisashasanudin.jwork.database.postgre;
 
-import qisashasanudin.jwork.Bonus;
+import qisashasanudin.jwork.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
-    // TODO: belum beres
 
-    private static ArrayList<Bonus> BONUS_DATABASE = new ArrayList<>();
+    private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<>();
 
-    public static ArrayList<Bonus> getBonusDatabase() {
-        BONUS_DATABASE.clear();
+    public static ArrayList<Invoice> getInvoiceDatabase() {
+        INVOICE_DATABASE.clear();
         Connection c = connection();
         PreparedStatement stmt;
-        Bonus bonus;
+        Invoice invoice;
 
         int id;
+        ArrayList<Job> jobs = new ArrayList<>();
+        Timestamp dateTS = null;
+        Calendar date = Calendar.getInstance();
+        int totalFee;
+        int jobseekerId;
+        InvoiceStatus INVOICE_STATUS;
+        PaymentType PAYMENT_TYPE;
+        int adminFee;
         String referralCode;
-        int extraFee;
-        int minTotalFee;
-        boolean active;
 
         try {
-            String sql = "SELECT * FROM bonus;";
+            String sql = "SELECT * FROM invoice;";
             stmt = c.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("id");
-                referralCode = rs.getString("referralCode");
-                extraFee = rs.getInt("extraFee");
-                minTotalFee = rs.getInt("minTotalFee");
-                active = rs.getBoolean("active");
-                bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
-                BONUS_DATABASE.add(bonus);
+
+                Array jobIds = rs.getArray("job_ids");
+                Integer[] int_jobIds = (Integer[]) jobIds.getArray();
+                for (int i : int_jobIds) {
+                    jobs.add(DatabaseJobPostgre.getJobById(i));
+                }
+
+                dateTS = rs.getTimestamp("date");
+                date.setTimeInMillis(dateTS.getTime());
+                totalFee = rs.getInt("total_fee");
+                jobseekerId = rs.getInt("jobseeker_id");
+                INVOICE_STATUS = InvoiceStatus.fromString(rs.getString("invoice_status"));
+                PAYMENT_TYPE = PaymentType.fromString(rs.getString("payment_type"));
+                adminFee = rs.getInt("admin_fee");
+                referralCode = rs.getString("referral_code");
+
+                if (PAYMENT_TYPE.equals(PaymentType.BankPayment)) {
+                    invoice = new BankPayment(id, jobs, DatabaseJobseekerPostgre.getJobseekerById(jobseekerId),
+                            adminFee, totalFee, INVOICE_STATUS);
+                    INVOICE_DATABASE.add(invoice);
+                } else if (PAYMENT_TYPE.equals(PaymentType.EwalletPayment)) {
+                    invoice = new EwalletPayment(id, jobs, DatabaseJobseekerPostgre.getJobseekerById(jobseekerId),
+                            DatabaseBonusPostgre.getBonusByRefferalCode(referralCode), totalFee, INVOICE_STATUS);
+                    INVOICE_DATABASE.add(invoice);
+                }
+
             }
             stmt.close();
             c.close();
@@ -41,7 +66,7 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
             e.printStackTrace();
         }
 
-        return BONUS_DATABASE;
+        return INVOICE_DATABASE;
     }
 
     public static int getLastId() {
@@ -49,7 +74,7 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         PreparedStatement stmt;
         int id = 0;
         try {
-            String sql = "SELECT id FROM bonus;";
+            String sql = "SELECT id FROM invoice;";
             stmt = c.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -64,101 +89,196 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return id;
     }
 
-    public static Bonus getBonusById(int id) {
+    public static Invoice getInvoiceById(int id) {
         Connection c = connection();
         PreparedStatement stmt;
-        Bonus bonus = null;
+        Invoice invoice = null;
 
+        ArrayList<Job> jobs = new ArrayList<>();
+        Timestamp dateTS = null;
+        int jobseekerId;
+        Calendar date = Calendar.getInstance();
+        int totalFee;
+        InvoiceStatus INVOICE_STATUS;
+        PaymentType PAYMENT_TYPE;
+        int adminFee;
         String referralCode;
-        int extraFee;
-        int minTotalFee;
-        boolean active;
 
         try {
-            String sql = "SELECT * FROM bonus WHERE id=?;";
+            String sql = "SELECT * FROM invoice WHERE id=?;";
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("id");
-                referralCode = rs.getString("referralCode");
-                extraFee = rs.getInt("extraFee");
-                minTotalFee = rs.getInt("minTotalFee");
-                active = rs.getBoolean("active");
-                bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
+
+                Array jobIds = rs.getArray("job_ids");
+                Integer[] int_jobIds = (Integer[]) jobIds.getArray();
+                for (int i : int_jobIds) {
+                    jobs.add(DatabaseJobPostgre.getJobById(i));
+                }
+
+                dateTS = rs.getTimestamp("date");
+                date.setTimeInMillis(dateTS.getTime());
+                totalFee = rs.getInt("total_fee");
+                jobseekerId = rs.getInt("jobseeker_id");
+                INVOICE_STATUS = InvoiceStatus.fromString(rs.getString("invoice_status"));
+                PAYMENT_TYPE = PaymentType.fromString(rs.getString("payment_type"));
+                adminFee = rs.getInt("admin_fee");
+                referralCode = rs.getString("referral_code");
+
+                if (PAYMENT_TYPE.equals(PaymentType.BankPayment)) {
+                    invoice = new BankPayment(id, jobs, DatabaseJobseekerPostgre.getJobseekerById(jobseekerId),
+                            adminFee, totalFee, INVOICE_STATUS);
+                } else if (PAYMENT_TYPE.equals(PaymentType.EwalletPayment)) {
+                    invoice = new EwalletPayment(id, jobs, DatabaseJobseekerPostgre.getJobseekerById(jobseekerId),
+                            DatabaseBonusPostgre.getBonusByRefferalCode(referralCode), totalFee, INVOICE_STATUS);
+
+                }
             }
             stmt.close();
             c.close();
-            return bonus;
+            return invoice;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bonus;
+        return invoice;
     }
 
-    public static Bonus getBonusByRefferalCode(String referralCode) {
+    public static ArrayList<Invoice> getInvoiceByJobseeker(int jobseekerId) {
+        INVOICE_DATABASE.clear();
         Connection c = connection();
         PreparedStatement stmt;
-        Bonus bonus = null;
+        Invoice invoice;
 
         int id;
-        int extraFee;
-        int minTotalFee;
-        boolean active;
+        ArrayList<Job> jobs = new ArrayList<>();
+        Timestamp dateTS = null;
+        Calendar date = Calendar.getInstance();
+        int totalFee;
+        InvoiceStatus INVOICE_STATUS;
+        PaymentType PAYMENT_TYPE;
+        int adminFee;
+        String referralCode;
 
         try {
-            String sql = "SELECT * FROM bonus WHERE referralCode=?;";
+            String sql = "SELECT * FROM invoice WHERE jobseeker_id=?;";
             stmt = c.prepareStatement(sql);
-            stmt.setString(1, referralCode);
+            stmt.setInt(1, jobseekerId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 id = rs.getInt("id");
-                referralCode = rs.getString("referralCode");
-                extraFee = rs.getInt("extraFee");
-                minTotalFee = rs.getInt("minTotalFee");
-                active = rs.getBoolean("active");
-                bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
+
+                Array jobIds = rs.getArray("job_ids");
+                Integer[] int_jobIds = (Integer[]) jobIds.getArray();
+                for (int i : int_jobIds) {
+                    jobs.add(DatabaseJobPostgre.getJobById(i));
+                }
+
+                dateTS = rs.getTimestamp("date");
+                date.setTimeInMillis(dateTS.getTime());
+                totalFee = rs.getInt("total_fee");
+                jobseekerId = rs.getInt("jobseeker_id");
+                INVOICE_STATUS = InvoiceStatus.fromString(rs.getString("invoice_status"));
+                PAYMENT_TYPE = PaymentType.fromString(rs.getString("payment_type"));
+                adminFee = rs.getInt("admin_fee");
+                referralCode = rs.getString("referral_code");
+
+                if (PAYMENT_TYPE.equals(PaymentType.BankPayment)) {
+                    invoice = new BankPayment(id, jobs, DatabaseJobseekerPostgre.getJobseekerById(jobseekerId),
+                            adminFee, totalFee, INVOICE_STATUS);
+                    INVOICE_DATABASE.add(invoice);
+                } else if (PAYMENT_TYPE.equals(PaymentType.EwalletPayment)) {
+                    invoice = new EwalletPayment(id, jobs, DatabaseJobseekerPostgre.getJobseekerById(jobseekerId),
+                            DatabaseBonusPostgre.getBonusByRefferalCode(referralCode), totalFee, INVOICE_STATUS);
+                    INVOICE_DATABASE.add(invoice);
+                }
             }
             stmt.close();
             c.close();
-            return bonus;
+            return INVOICE_DATABASE;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bonus;
+        return INVOICE_DATABASE;
     }
 
-    public static Bonus addBonus(String referralCode, int extraFee, int minTotalFee, boolean active) {
+    public static Invoice addInvoice(BankPayment invoice) {
         Connection c = connection();
         PreparedStatement stmt;
-        int id = getLastId() + 1;
-        Bonus bonus = null;
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
         try {
-            bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
-            String sql = "INSERT INTO bonus (id, referralCode, extraFee, minTotalFee, active) VALUES (?,?,?,?,?) RETURNING id;";
+            String sql = "INSERT INTO invoice (id, job_ids, date, total_fee, jobseeker_id, invoice_status, payment_type, admin_fee) VALUES (?,?,?,?,?,?,?,?) RETURNING id;";
             stmt = c.prepareStatement(sql);
-            stmt.setInt(1, bonus.getId());
-            stmt.setString(2, bonus.getReferralCode());
-            stmt.setInt(3, bonus.getExtraFee());
-            stmt.setInt(4, bonus.getMinTotalFee());
-            stmt.setBoolean(5, bonus.getActive());
+
+            stmt.setInt(1, invoice.getId());
+
+            ArrayList<Integer> temp1 = new ArrayList<>();
+            for (Job job : invoice.getJobs()) {
+                temp1.add(job.getId());
+            }
+            Array jobIds = c.createArrayOf("INTEGER", temp1.toArray());
+            stmt.setArray(2, jobIds);
+
+            stmt.setTimestamp(3, ts, invoice.getDate());
+            stmt.setInt(4, invoice.getTotalFee());
+            stmt.setInt(5, invoice.getJobseeker().getId());
+            stmt.setString(6, invoice.getInvoiceStatus().toString());
+            stmt.setString(7, invoice.getPaymentType().toString());
+            stmt.setInt(8, invoice.getAdminFee());
+
             stmt.executeQuery();
             stmt.close();
             c.close();
-            return bonus;
+            return invoice;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bonus;
+        return invoice;
     }
 
-    public static boolean activateBonus(int id) {
+    public static Invoice addInvoice(EwalletPayment invoice) {
+        Connection c = connection();
+        PreparedStatement stmt;
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        try {
+            String sql = "INSERT INTO invoice (id, job_ids, date, total_fee, jobseeker_id, invoice_status, payment_type, referral_code) VALUES (?,?,?,?,?,?,?,?) RETURNING id;";
+            stmt = c.prepareStatement(sql);
+
+            stmt.setInt(1, invoice.getId());
+
+            ArrayList<Integer> temp1 = new ArrayList<>();
+            for (Job job : invoice.getJobs()) {
+                temp1.add(job.getId());
+            }
+            Array jobIds = c.createArrayOf("INTEGER", temp1.toArray());
+            stmt.setArray(2, jobIds);
+
+            stmt.setTimestamp(3, ts, invoice.getDate());
+            stmt.setInt(4, invoice.getTotalFee());
+            stmt.setInt(5, invoice.getJobseeker().getId());
+            stmt.setString(6, invoice.getInvoiceStatus().toString());
+            stmt.setString(7, invoice.getPaymentType().toString());
+            stmt.setString(8, invoice.getBonus().getReferralCode());
+
+            stmt.executeQuery();
+            stmt.close();
+            c.close();
+            return invoice;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return invoice;
+    }
+
+    public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus) {
         Connection c = connection();
         PreparedStatement stmt;
         try {
-            String sql = "UPDATE bonus SET active = TRUE WHERE id=?;";
+            String sql = "UPDATE invoice SET invoice_status = ? WHERE id=?;";
             stmt = c.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setString(1, invoiceStatus.toString());
+            stmt.setInt(2, id);
             stmt.execute();
             stmt.close();
             c.close();
@@ -169,28 +289,11 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return false;
     }
 
-    public static boolean deactivateBonus(int id) {
+    public static boolean removeInvoice(int id) {
         Connection c = connection();
         PreparedStatement stmt;
         try {
-            String sql = "UPDATE bonus SET active = FALSE WHERE id=?;";
-            stmt = c.prepareStatement(sql);
-            stmt.setInt(1, id);
-            stmt.execute();
-            stmt.close();
-            c.close();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean removeBonus(int id) {
-        Connection c = connection();
-        PreparedStatement stmt;
-        try {
-            String sql = "DELETE FROM bonus WHERE id=?;";
+            String sql = "DELETE FROM invoice WHERE id=?;";
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, id);
             stmt.execute();

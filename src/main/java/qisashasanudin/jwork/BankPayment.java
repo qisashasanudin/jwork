@@ -26,6 +26,12 @@ public class BankPayment extends Invoice {
         this.adminFee = adminFee;
     }
 
+    public BankPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, int adminFee, int totalFee,
+            InvoiceStatus status) {
+        super(id, jobs, jobseeker, totalFee, status);
+        this.adminFee = adminFee;
+    }
+
     /**
      * method getPaymentType, berfungsi sebagai getter untuk mengambil value
      * PAYMENT_TYPE.BankPayment

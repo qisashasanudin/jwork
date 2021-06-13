@@ -32,6 +32,15 @@ public abstract class Invoice {
         this.invoiceStatus = InvoiceStatus.Ongoing;
     }
 
+    public Invoice(int id, ArrayList<Job> jobs, Jobseeker jobseeker, int totalFee, InvoiceStatus status) {
+        this.id = id;
+        this.jobs = jobs;
+        this.date = Calendar.getInstance();
+        this.jobseeker = jobseeker;
+        this.totalFee = totalFee;
+        this.invoiceStatus = status;
+    }
+
     /**
      * method getId, berfungsi sebagai getter untuk mengambil value id
      *

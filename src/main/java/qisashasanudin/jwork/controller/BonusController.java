@@ -24,7 +24,9 @@ public class BonusController {
     public Bonus addBonus(@RequestParam(value = "referralCode") String referralCode,
             @RequestParam(value = "extraFee") int extraFee, @RequestParam(value = "minTotalFee") int minTotalFee,
             @RequestParam(value = "active") boolean active) {
-        return DatabaseBonusPostgre.addBonus(referralCode, extraFee, minTotalFee, active);
+        int id = DatabaseBonusPostgre.getLastId() + 1;
+        Bonus bonus = new Bonus(id, referralCode, extraFee, minTotalFee, active);
+        return DatabaseBonusPostgre.addBonus(bonus);
     }
 
 }

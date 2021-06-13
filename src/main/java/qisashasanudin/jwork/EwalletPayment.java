@@ -26,6 +26,12 @@ public class EwalletPayment extends Invoice {
         this.bonus = bonus;
     }
 
+    public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, Bonus bonus, int totalFee,
+            InvoiceStatus status) {
+        super(id, jobs, jobseeker, totalFee, status);
+        this.bonus = bonus;
+    }
+
     /**
      * method getPaymentType, berfungsi sebagai getter untuk mengambil value
      * PAYMENT_TYPE.EwalletPayment

@@ -30,7 +30,7 @@ public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
                 id = rs.getInt("id");
                 name = rs.getString("name");
                 email = rs.getString("email");
-                phoneNumber = rs.getString("phoneNumber");
+                phoneNumber = rs.getString("phone_number");
                 province = rs.getString("province");
                 city = rs.getString("city");
                 description = rs.getString("description");
@@ -88,7 +88,7 @@ public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
                 id = rs.getInt("id");
                 name = rs.getString("name");
                 email = rs.getString("email");
-                phoneNumber = rs.getString("phoneNumber");
+                phoneNumber = rs.getString("phone_number");
                 province = rs.getString("province");
                 city = rs.getString("city");
                 description = rs.getString("description");
@@ -103,14 +103,11 @@ public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
         return recruiter;
     }
 
-    public static Recruiter addRecruiter(String name, String email, String phoneNumber, Location location) {
+    public static Recruiter addRecruiter(Recruiter recruiter) {
         Connection c = connection();
         PreparedStatement stmt;
-        int id = getLastId() + 1;
-        Recruiter recruiter = null;
         try {
-            recruiter = new Recruiter(id, name, email, phoneNumber, location);
-            String sql = "INSERT INTO recruiter (id, name, email, phoneNumber, province, city, description) VALUES (?,?,?,?,?,?,?) RETURNING id;";
+            String sql = "INSERT INTO recruiter (id, name, email, phone_number, province, city, description) VALUES (?,?,?,?,?,?,?) RETURNING id;";
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, recruiter.getId());
             stmt.setString(2, recruiter.getName());
