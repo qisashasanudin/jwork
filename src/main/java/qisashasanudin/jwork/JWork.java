@@ -4,10 +4,7 @@ import java.sql.*;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import qisashasanudin.jwork.database.postgre.DatabaseConnectionPostgre;
-import qisashasanudin.jwork.database.postgre.DatabaseJobPostgre;
-import qisashasanudin.jwork.database.postgre.DatabaseRecruiterPostgre;
 
 @SpringBootApplication
 public class JWork {
@@ -80,17 +77,20 @@ public class JWork {
                         System.exit(0);
                 }
 
-//                Recruiter recruiter1 = new Recruiter(DatabaseRecruiterPostgre.getLastId()+1, "Hary", "hary@ui.ac.id",
-//                                "081234567890", loc1);
-//                DatabaseRecruiterPostgre.addRecruiter(recruiter1);
-//
-//                Job job1 = new Job(DatabaseJobPostgre.getLastId()+1, "Mobile Developer", 7000000, JobCategory.FrontEnd,
-//                                DatabaseRecruiterPostgre.getRecruiterById(1));
-//                DatabaseJobPostgre.addJob(job1);
-//
-//                Job job2 = new Job(DatabaseJobPostgre.getLastId()+1, "Data Analyst", 8000000, JobCategory.BackEnd,
-//                                DatabaseRecruiterPostgre.getRecruiterById(1));
-//                DatabaseJobPostgre.addJob(job2);
+                // Recruiter recruiter1 = new Recruiter(DatabaseRecruiterPostgre.getLastId()+1,
+                // "Hary", "hary@ui.ac.id",
+                // "081234567890", loc1);
+                // DatabaseRecruiterPostgre.addRecruiter(recruiter1);
+                //
+                // Job job1 = new Job(DatabaseJobPostgre.getLastId()+1, "Mobile Developer",
+                // 7000000, JobCategory.FrontEnd,
+                // DatabaseRecruiterPostgre.getRecruiterById(1));
+                // DatabaseJobPostgre.addJob(job1);
+                //
+                // Job job2 = new Job(DatabaseJobPostgre.getLastId()+1, "Data Analyst", 8000000,
+                // JobCategory.BackEnd,
+                // DatabaseRecruiterPostgre.getRecruiterById(1));
+                // DatabaseJobPostgre.addJob(job2);
 
                 SpringApplication.run(JWork.class, args);
         }
