@@ -13,7 +13,6 @@ import qisashasanudin.jwork.database.postgre.DatabaseRecruiterPostgre;
 public class JWork {
 
         public static void main(String[] args) {
-                // TODO: buat DatabaseInvoice
                 // TODO: buat JavaDoc
 
                 Location loc1 = new Location("Jawa Barat", "Sukabumi", "Cikole");
@@ -81,17 +80,17 @@ public class JWork {
                         System.exit(0);
                 }
 
-                Recruiter recruiter1 = new Recruiter(DatabaseRecruiterPostgre.getLastId()+1, "Hary", "hary@ui.ac.id",
-                                "081234567890", loc1);
-                DatabaseRecruiterPostgre.addRecruiter(recruiter1);
-
-                Job job1 = new Job(DatabaseJobPostgre.getLastId()+1, "Mobile Developer", 7000000, JobCategory.FrontEnd,
-                                DatabaseRecruiterPostgre.getRecruiterById(1));
-                DatabaseJobPostgre.addJob(job1);
-
-                Job job2 = new Job(DatabaseJobPostgre.getLastId()+1, "Data Analyst", 8000000, JobCategory.BackEnd,
-                                DatabaseRecruiterPostgre.getRecruiterById(1));
-                DatabaseJobPostgre.addJob(job2);
+//                Recruiter recruiter1 = new Recruiter(DatabaseRecruiterPostgre.getLastId()+1, "Hary", "hary@ui.ac.id",
+//                                "081234567890", loc1);
+//                DatabaseRecruiterPostgre.addRecruiter(recruiter1);
+//
+//                Job job1 = new Job(DatabaseJobPostgre.getLastId()+1, "Mobile Developer", 7000000, JobCategory.FrontEnd,
+//                                DatabaseRecruiterPostgre.getRecruiterById(1));
+//                DatabaseJobPostgre.addJob(job1);
+//
+//                Job job2 = new Job(DatabaseJobPostgre.getLastId()+1, "Data Analyst", 8000000, JobCategory.BackEnd,
+//                                DatabaseRecruiterPostgre.getRecruiterById(1));
+//                DatabaseJobPostgre.addJob(job2);
 
                 SpringApplication.run(JWork.class, args);
         }

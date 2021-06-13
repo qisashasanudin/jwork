@@ -17,7 +17,7 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         Invoice invoice;
 
         int id = 0;
-        ArrayList<Job> jobs = new ArrayList<>();
+
         Timestamp dateTS = null;
         Calendar date = Calendar.getInstance();
         int totalFee = 0;
@@ -32,11 +32,12 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
             stmt = c.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                ArrayList<Job> jobs = new ArrayList<>();
                 id = rs.getInt("id");
-
                 Array jobIds = rs.getArray("job_ids");
                 Integer[] int_jobIds = (Integer[]) jobIds.getArray();
                 for (int i : int_jobIds) {
+                    System.out.println(i);
                     jobs.add(DatabaseJobPostgre.getJobById(i));
                 }
 
@@ -94,7 +95,6 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         PreparedStatement stmt;
         Invoice invoice = null;
 
-        ArrayList<Job> jobs = new ArrayList<>();
         Timestamp dateTS = null;
         Calendar date = Calendar.getInstance();
         int totalFee = 0;
@@ -110,6 +110,7 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                ArrayList<Job> jobs = new ArrayList<>();
                 id = rs.getInt("id");
 
                 Array jobIds = rs.getArray("job_ids");
@@ -152,7 +153,6 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         Invoice invoice;
 
         int id = 0;
-        ArrayList<Job> jobs = new ArrayList<>();
         Timestamp dateTS = null;
         Calendar date = Calendar.getInstance();
         int totalFee = 0;
@@ -167,6 +167,7 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
             stmt.setInt(1, jobseekerId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                ArrayList<Job> jobs = new ArrayList<>();
                 id = rs.getInt("id");
 
                 Array jobIds = rs.getArray("job_ids");

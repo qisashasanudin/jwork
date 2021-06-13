@@ -15,10 +15,6 @@ public class DatabaseConnectionPostgre {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(db_url + db_name, db_user, db_password);
 
-            if (c != null) {
-                System.out.println("Connected to database successfully");
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to connect to database.");
