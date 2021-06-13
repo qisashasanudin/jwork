@@ -106,7 +106,7 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         boolean active;
 
         try {
-            String sql = "SELECT * FROM bonus WHERE referralCode=?;";
+            String sql = "SELECT * FROM bonus WHERE referral_code=?;";
             stmt = c.prepareStatement(sql);
             stmt.setString(1, referralCode);
             ResultSet rs = stmt.executeQuery();

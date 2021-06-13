@@ -31,9 +31,11 @@ public class InvoiceController {
 
     @RequestMapping(value = "/invoiceStatus/{id}", method = RequestMethod.PUT)
     public Invoice changeInvoiceStatus(@PathVariable int id, @RequestParam(value = "status") InvoiceStatus status) {
-        Invoice invoice = DatabaseInvoicePostgre.getInvoiceById(id);
-        invoice.setInvoiceStatus(status);
-        return invoice;
+        boolean isSuccessful = DatabaseInvoicePostgre.changeInvoiceStatus(id, status);
+        if(isSuccessful){
+            return DatabaseInvoicePostgre.getInvoiceById(id);
+        }
+        return null;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

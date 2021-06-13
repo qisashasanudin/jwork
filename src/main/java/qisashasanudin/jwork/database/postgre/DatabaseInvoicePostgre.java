@@ -16,16 +16,16 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         PreparedStatement stmt;
         Invoice invoice;
 
-        int id;
+        int id = 0;
         ArrayList<Job> jobs = new ArrayList<>();
         Timestamp dateTS = null;
         Calendar date = Calendar.getInstance();
-        int totalFee;
-        int jobseekerId;
+        int totalFee = 0;
+        int jobseekerId = 0;
         InvoiceStatus INVOICE_STATUS;
         PaymentType PAYMENT_TYPE;
-        int adminFee;
-        String referralCode;
+        int adminFee = 0;
+        String referralCode = "";
 
         try {
             String sql = "SELECT * FROM invoice;";
@@ -96,13 +96,13 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
 
         ArrayList<Job> jobs = new ArrayList<>();
         Timestamp dateTS = null;
-        int jobseekerId;
         Calendar date = Calendar.getInstance();
-        int totalFee;
+        int totalFee = 0;
+        int jobseekerId = 0;
         InvoiceStatus INVOICE_STATUS;
         PaymentType PAYMENT_TYPE;
-        int adminFee;
-        String referralCode;
+        int adminFee = 0;
+        String referralCode = "";
 
         try {
             String sql = "SELECT * FROM invoice WHERE id=?;";
@@ -151,15 +151,15 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         PreparedStatement stmt;
         Invoice invoice;
 
-        int id;
+        int id = 0;
         ArrayList<Job> jobs = new ArrayList<>();
         Timestamp dateTS = null;
         Calendar date = Calendar.getInstance();
-        int totalFee;
+        int totalFee = 0;
         InvoiceStatus INVOICE_STATUS;
         PaymentType PAYMENT_TYPE;
-        int adminFee;
-        String referralCode;
+        int adminFee = 0;
+        String referralCode = "";
 
         try {
             String sql = "SELECT * FROM invoice WHERE jobseeker_id=?;";
@@ -259,7 +259,11 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
             stmt.setInt(5, invoice.getJobseeker().getId());
             stmt.setString(6, invoice.getInvoiceStatus().toString());
             stmt.setString(7, invoice.getPaymentType().toString());
-            stmt.setString(8, invoice.getBonus().getReferralCode());
+            if(invoice.getBonus() != null){
+                stmt.setString(8, invoice.getBonus().getReferralCode());
+            }else{
+                stmt.setString(8, null);
+            }
 
             stmt.executeQuery();
             stmt.close();
