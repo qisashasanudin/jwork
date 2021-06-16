@@ -7,8 +7,8 @@ import qisashasanudin.jwork.exception.ReferralCodeAlreadyExistsException;
 import java.util.ArrayList;
 
 /**
- * Praktikum OOP - Program "JWork" class DatabaseBonusr: berfungsi untuk
- * meng-generate object yang berisi list Bonus yang ada
+ * Praktikum OOP - Program "JWork" - class DatabaseBonus: berfungsi untuk
+ * meng-generate dan mengakses database berisi list Bonus yang ada
  *
  * @author Qisas Tazkia Hasanudin
  * @version 1.0
@@ -20,28 +20,32 @@ public class DatabaseBonus {
     private static ArrayList<Bonus> BONUS_DATABASE = new ArrayList<Bonus>();
 
     /**
-     * method getBonusDatabase, berfungsi sebagai getter untuk mengambil value
-     * BONUS_DATABASE
+     * method getBonusDatabase, berfungsi sebagai getter untuk mengambil list berisi
+     * semua objek yang berada di dalam database
      *
-     * @return BONUS_DATABASE
+     * @return ArrayList<Bonus> BONUS_DATABASE
      */
     public static ArrayList<Bonus> getBonusDatabase() {
         return BONUS_DATABASE;
     }
 
     /**
-     * method getLastId, berfungsi sebagai getter untuk mengambil value lastId
+     * method getLastId, berfungsi sebagai getter untuk mengambil id dari objek yang
+     * terakhir kali ditambahkan ke database
      *
-     * @return lastId
+     * @return int lastId
      */
     public static int getLastId() {
         return lastId;
     }
 
     /**
-     * method getBonusById, berfungsi sebagai getter untuk mengambil value Bonus
+     * method getBonusById, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan ID-nya
      *
-     * @return result
+     * @param id
+     * @throws BonusNotFoundException
+     * @return Bonus result
      */
     public static Bonus getBonusById(int id) throws BonusNotFoundException {
         for (Bonus bonus : BONUS_DATABASE) {
@@ -53,10 +57,11 @@ public class DatabaseBonus {
     }
 
     /**
-     * method getBonusByRefferalCode, berfungsi sebagai getter untuk mengambil value
-     * Bonus
+     * method getBonusByRefferalCode, berfungsi sebagai getter untuk mengambil salah
+     * satu objek menggunakan referral code yang diterapkan padanya
      *
-     * @return result
+     * @param referralCode
+     * @return Bonus result
      */
     public static Bonus getBonusByRefferalCode(String referralCode) {
         for (Bonus bonus : BONUS_DATABASE) {
@@ -68,9 +73,11 @@ public class DatabaseBonus {
     }
 
     /**
-     * method addBonus, berfungsi untuk menambah bonus baru
+     * method addBonus, berfungsi untuk menambah objek baru
      *
      * @param bonus
+     * @throws ReferralCodeAlreadyExistsException
+     * @return Bonus bonus
      */
     public static boolean addBonus(Bonus bonus) throws ReferralCodeAlreadyExistsException {
         for (Bonus element : BONUS_DATABASE) {
@@ -83,6 +90,13 @@ public class DatabaseBonus {
         return true;
     }
 
+    /**
+     * method activateBonus, berfungsi untuk mengubah status dari bonus menjadi
+     * aktif
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean activateBonus(int id) {
         boolean result = false;
         for (Bonus bonus : BONUS_DATABASE) {
@@ -94,6 +108,13 @@ public class DatabaseBonus {
         return result;
     }
 
+    /**
+     * method deactivateBonus, berfungsi untuk mengubah status dari bonus menjadi
+     * tidak aktif
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean deactivateBonus(int id) {
         boolean result = false;
         for (Bonus bonus : BONUS_DATABASE) {
@@ -105,6 +126,14 @@ public class DatabaseBonus {
         return result;
     }
 
+    /**
+     * method removeBonus, berfungsi untuk menghapus salah satu objek berdasarkan
+     * ID-nya
+     *
+     * @param id
+     * @throws BonusNotFoundException
+     * @return boolean
+     */
     public static boolean removeBonus(int id) throws BonusNotFoundException {
         try {
             for (Bonus bonus : BONUS_DATABASE) {

@@ -7,10 +7,23 @@ import qisashasanudin.jwork.Recruiter;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Praktikum OOP - Program "JWork" - class DatabaseJobPostgre: berfungsi untuk
+ * meng-generate dan mengakses database berisi list Job yang ada
+ *
+ * @author Qisas Tazkia Hasanudin
+ * @version 1.0
+ */
 public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
-
+    // instance variable
     private static ArrayList<Job> JOB_DATABASE = new ArrayList<>();
 
+    /**
+     * method getJobDatabase, berfungsi sebagai getter untuk mengambil list berisi
+     * semua objek yang berada di dalam database
+     *
+     * @return ArrayList<Job> JOB_DATABASE
+     */
     public static ArrayList<Job> getJobDatabase() {
         JOB_DATABASE.clear();
         Connection c = connection();
@@ -47,6 +60,12 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         return JOB_DATABASE;
     }
 
+    /**
+     * method getLastId, berfungsi sebagai getter untuk mengambil id dari objek yang
+     * terakhir kali ditambahkan ke database
+     *
+     * @return int lastId
+     */
     public static int getLastId() {
         Connection c = connection();
         PreparedStatement stmt;
@@ -67,6 +86,13 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         return id;
     }
 
+    /**
+     * method getJobById, berfungsi sebagai getter untuk mengambil salah satu objek
+     * menggunakan ID-nya
+     *
+     * @param id
+     * @return Job job
+     */
     public static Job getJobById(int id) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -100,6 +126,13 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         return job;
     }
 
+    /**
+     * method getJobByRecruiter, berfungsi sebagai getter untuk mengambil salah satu
+     * objek berdasarkan ID dari recruiter yang membuat Job tersebut
+     *
+     * @param jobseekerId
+     * @return ArrayList<Job> jobs
+     */
     public static ArrayList<Job> getJobByRecruiter(int recruiterId) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -137,6 +170,13 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         return jobs;
     }
 
+    /**
+     * method getJobByRecruiter, berfungsi sebagai getter untuk mengambil salah satu
+     * job berdasarkan kategorinya
+     *
+     * @param category
+     * @return ArrayList<Job> jobs
+     */
     public static ArrayList<Job> getJobByCategory(JobCategory category) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -174,6 +214,12 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         return jobs;
     }
 
+    /**
+     * method addJob, berfungsi untuk menambah objek baru
+     *
+     * @param job
+     * @return Job job
+     */
     public static Job addJob(Job job) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -195,6 +241,13 @@ public class DatabaseJobPostgre extends DatabaseConnectionPostgre {
         return job;
     }
 
+    /**
+     * method removeJob, berfungsi untuk menghapus salah satu objek berdasarkan
+     * ID-nya
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean removeJob(int id) {
         Connection c = connection();
         PreparedStatement stmt;

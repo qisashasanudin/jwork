@@ -3,8 +3,23 @@ package qisashasanudin.jwork.database.postgre;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Praktikum OOP - Program "JWork" - class DatabaseConnectionPostgre: berfungsi
+ * untuk membuat koneksi terhadap database
+ *
+ * @author Qisas Tazkia Hasanudin
+ * @version 1.0
+ */
 public class DatabaseConnectionPostgre {
+
+    /**
+     * method getBonusDatabase, berfungsi melakukan koneksi dengan database dan
+     * mereturn state dari koneksi tersebut
+     * 
+     * @return Connection c
+     */
     public static Connection connection() {
+        // instance variable
         Connection c = null;
         String db_url = "jdbc:postgresql://localhost:5432/";
         String db_name = "jwork";

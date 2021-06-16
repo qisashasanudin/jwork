@@ -11,8 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Praktikum OOP - Program "JWork" class DatabaseJobseeker: berfungsi untuk
- * meng-generate object yang berisi list Jobseeker yang ada
+ * Praktikum OOP - Program "JWork" - class DatabaseJobseeker: berfungsi untuk
+ * meng-generate dan mengakses database berisi list Jobseeker yang ada
  *
  * @author Qisas Tazkia Hasanudin
  * @version 1.0
@@ -24,29 +24,32 @@ public class DatabaseJobseeker {
     private static ArrayList<Jobseeker> JOBSEEKER_DATABASE = new ArrayList<Jobseeker>();
 
     /**
-     * method getJobseekerDatabase, berfungsi sebagai getter untuk mengambil value
-     * JOBSEEKER_DATABASE
+     * method getJobseekerDatabase, berfungsi sebagai getter untuk mengambil list
+     * berisi semua objek yang berada di dalam database
      *
-     * @return JOBSEEKER_DATABASE
+     * @return ArrayList<Jobseeker> JOBSEEKER_DATABASE
      */
     public static ArrayList<Jobseeker> getJobseekerDatabase() {
         return JOBSEEKER_DATABASE;
     }
 
     /**
-     * method getLastId, berfungsi sebagai getter untuk mengambil value lastId
+     * method getLastId, berfungsi sebagai getter untuk mengambil id dari objek yang
+     * terakhir kali ditambahkan ke database
      *
-     * @return lastId
+     * @return int lastId
      */
     public static int getLastId() {
         return lastId;
     }
 
     /**
-     * method getJobseekerById, berfungsi sebagai getter untuk mengambil value
-     * Jobseeker
+     * method getJobseekerById, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan ID-nya
      *
-     * @return lastId
+     * @param jobseekerId
+     * @throws JobseekerNotFoundException
+     * @return Jobseeker jobseeeker
      */
     public static Jobseeker getJobseekerById(int id) throws JobseekerNotFoundException {
         for (Jobseeker jobseeker : JOBSEEKER_DATABASE) {
@@ -60,11 +63,14 @@ public class DatabaseJobseeker {
     }
 
     /**
-     * method addJobseeker, berfungsi untuk menambah Jobseeker baru
+     * method addJobseeker, berfungsi untuk menambah objek baru
      *
      * @param jobseeker
+     * @throws EmailAlreadyExistsException
+     * @throws InvalidEmailException
+     * @throws InvalidPasswordException
+     * @return Jobseeker jobseeker
      */
-
     public static boolean addJobseeker(Jobseeker jobseeker)
             throws EmailAlreadyExistsException, InvalidEmailException, InvalidPasswordException {
         for (Jobseeker element : JOBSEEKER_DATABASE) {
@@ -93,9 +99,12 @@ public class DatabaseJobseeker {
     }
 
     /**
-     * method removeJobseeker, berfungsi untuk menghapus Jobseeker yang sudah ada
+     * method removeJobseeker, berfungsi untuk menghapus salah satu objek
+     * berdasarkan ID-nya
      *
      * @param id
+     * @throws JobseekerNotFoundException
+     * @return boolean
      */
     public static boolean removeJobseeker(int id) throws JobseekerNotFoundException {
         boolean status = false;
@@ -112,6 +121,16 @@ public class DatabaseJobseeker {
         return status;
     }
 
+    /**
+     * method getJobseekerLogin, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan email dan password-nya
+     *
+     * @param email_new
+     * @param password_new
+     * @throws InvalidEmailException
+     * @throws InvalidPasswordException
+     * @return Jobseeker jobseeker
+     */
     public static Jobseeker getJobseekerLogin(String email, String password)
             throws InvalidEmailException, InvalidPasswordException {
 

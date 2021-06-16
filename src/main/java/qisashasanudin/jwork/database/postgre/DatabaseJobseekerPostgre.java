@@ -6,10 +6,23 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Praktikum OOP - Program "JWork" - class DatabaseJobseekerPostgre: berfungsi
+ * untuk meng-generate dan mengakses database berisi list Jobseeker yang ada
+ *
+ * @author Qisas Tazkia Hasanudin
+ * @version 1.0
+ */
 public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
-
+    // instance variable
     private static ArrayList<Jobseeker> JOBSEEKER_DATABASE = new ArrayList<>();
 
+    /**
+     * method getJobseekerDatabase, berfungsi sebagai getter untuk mengambil list
+     * berisi semua objek yang berada di dalam database
+     *
+     * @return ArrayList<Jobseeker> JOBSEEKER_DATABASE
+     */
     public static ArrayList<Jobseeker> getJobseekerDatabase() {
         JOBSEEKER_DATABASE.clear();
         Connection c = connection();
@@ -43,6 +56,12 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return JOBSEEKER_DATABASE;
     }
 
+    /**
+     * method getLastId, berfungsi sebagai getter untuk mengambil id dari objek yang
+     * terakhir kali ditambahkan ke database
+     *
+     * @return int lastId
+     */
     public static int getLastId() {
         Connection c = connection();
         PreparedStatement stmt;
@@ -63,6 +82,13 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return id;
     }
 
+    /**
+     * method getJobseekerById, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan ID-nya
+     *
+     * @param jobseekerId
+     * @return Jobseeker jobseeeker
+     */
     public static Jobseeker getJobseekerById(int jobseekerId) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -96,6 +122,12 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return jobseeker;
     }
 
+    /**
+     * method addJobseeker, berfungsi untuk menambah objek baru
+     *
+     * @param jobseeker
+     * @return Jobseeker jobseeker
+     */
     public static Jobseeker addJobseeker(Jobseeker jobseeker) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -118,6 +150,13 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return jobseeker;
     }
 
+    /**
+     * method removeJobseeker, berfungsi untuk menghapus salah satu objek
+     * berdasarkan ID-nya
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean removeJobseeker(int id) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -135,6 +174,14 @@ public class DatabaseJobseekerPostgre extends DatabaseConnectionPostgre {
         return false;
     }
 
+    /**
+     * method getJobseekerLogin, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan email dan password-nya
+     *
+     * @param email_new
+     * @param password_new
+     * @return Jobseeker jobseeker
+     */
     public static Jobseeker getJobseekerLogin(String email_new, String password_new) {
         Connection c = connection();
         PreparedStatement stmt;

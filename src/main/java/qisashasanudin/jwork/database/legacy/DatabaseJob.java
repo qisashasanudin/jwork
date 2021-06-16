@@ -23,7 +23,7 @@ public class DatabaseJob {
      * method getJobDatabase, berfungsi sebagai getter untuk mengambil value
      * JOB_DATABASE
      *
-     * @return JOB_DATABASE
+     * @return ArrayList<Job> JOB_DATABASE
      */
     public static ArrayList<Job> getJobDatabase() {
         return JOB_DATABASE;
@@ -32,7 +32,7 @@ public class DatabaseJob {
     /**
      * method getLastId, berfungsi sebagai getter untuk mengambil value lastId
      *
-     * @return lastId
+     * @return int lastId
      */
     public static int getLastId() {
         return lastId;
@@ -41,7 +41,9 @@ public class DatabaseJob {
     /**
      * method getJobById, berfungsi sebagai getter untuk mengambil value Job
      *
-     * @return lastId
+     * @param id
+     * @throws JobNotFoundException
+     * @return Job job
      */
 
     public static Job getJobById(int id) throws JobNotFoundException {
@@ -56,7 +58,8 @@ public class DatabaseJob {
     /**
      * method getJobByRecruiter, berfungsi sebagai getter untuk mengambil value Job
      *
-     * @return Job
+     * @param recruiterId
+     * @return ArrayList<Job> jobs
      */
     public static ArrayList<Job> getJobByRecruiter(int recruiterId) {
         ArrayList<Job> result = null;
@@ -75,7 +78,8 @@ public class DatabaseJob {
     /**
      * method getJobByCategory, berfungsi sebagai getter untuk mengambil value Job
      *
-     * @return Job
+     * @param category
+     * @return ArrayList<Job> jobs
      */
     public static ArrayList<Job> getJobByCategory(JobCategory category) {
         ArrayList<Job> result = null;
@@ -95,6 +99,7 @@ public class DatabaseJob {
      * method addJob, berfungsi untuk menambah Job baru
      *
      * @param job
+     * @return boolean
      */
     public static boolean addJob(Job job) {
         JOB_DATABASE.add(job);
@@ -106,6 +111,8 @@ public class DatabaseJob {
      * method removeJob, berfungsi untuk menghapus Job yang sudah ada
      *
      * @param id
+     * @throws JobNotFoundException
+     * @return boolean
      */
     public static boolean removeJob(int id) throws JobNotFoundException {
         boolean status = false;

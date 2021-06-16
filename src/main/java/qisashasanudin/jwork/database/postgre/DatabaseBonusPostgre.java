@@ -5,10 +5,24 @@ import qisashasanudin.jwork.Bonus;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
+/**
+ * Praktikum OOP - Program "JWork" - class DatabaseBonusPostgre: berfungsi untuk
+ * meng-generate dan mengakses database berisi list Bonus yang ada
+ *
+ * @author Qisas Tazkia Hasanudin
+ * @version 1.0
+ */
 
+public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
+    // instance variable
     private static ArrayList<Bonus> BONUS_DATABASE = new ArrayList<>();
 
+    /**
+     * method getBonusDatabase, berfungsi sebagai getter untuk mengambil list berisi
+     * semua objek yang berada di dalam database
+     *
+     * @return ArrayList<Bonus> BONUS_DATABASE
+     */
     public static ArrayList<Bonus> getBonusDatabase() {
         BONUS_DATABASE.clear();
         Connection c = connection();
@@ -43,6 +57,12 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return BONUS_DATABASE;
     }
 
+    /**
+     * method getLastId, berfungsi sebagai getter untuk mengambil id dari objek yang
+     * terakhir kali ditambahkan ke database
+     *
+     * @return int lastId
+     */
     public static int getLastId() {
         Connection c = connection();
         PreparedStatement stmt;
@@ -63,6 +83,13 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return id;
     }
 
+    /**
+     * method getBonusById, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan ID-nya
+     *
+     * @param id
+     * @return Bonus result
+     */
     public static Bonus getBonusById(int id) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -95,6 +122,13 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return bonus;
     }
 
+    /**
+     * method getBonusByRefferalCode, berfungsi sebagai getter untuk mengambil salah
+     * satu objek menggunakan referral code yang diterapkan padanya
+     *
+     * @param referralCode
+     * @return Bonus result
+     */
     public static Bonus getBonusByRefferalCode(String referralCode) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -127,6 +161,12 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return bonus;
     }
 
+    /**
+     * method addBonus, berfungsi untuk menambah objek baru
+     *
+     * @param bonus
+     * @return Bonus bonus
+     */
     public static Bonus addBonus(Bonus bonus) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -148,6 +188,13 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return bonus;
     }
 
+    /**
+     * method activateBonus, berfungsi untuk mengubah status dari bonus menjadi
+     * aktif
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean activateBonus(int id) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -165,6 +212,13 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return false;
     }
 
+    /**
+     * method deactivateBonus, berfungsi untuk mengubah status dari bonus menjadi
+     * tidak aktif
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean deactivateBonus(int id) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -182,6 +236,13 @@ public class DatabaseBonusPostgre extends DatabaseConnectionPostgre {
         return false;
     }
 
+    /**
+     * method removeBonus, berfungsi untuk menghapus salah satu objek berdasarkan
+     * ID-nya
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean removeBonus(int id) {
         Connection c = connection();
         PreparedStatement stmt;

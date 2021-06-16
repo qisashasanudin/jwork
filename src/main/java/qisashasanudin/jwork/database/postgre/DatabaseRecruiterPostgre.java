@@ -5,10 +5,24 @@ import qisashasanudin.jwork.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Praktikum OOP - Program "JWork" - class DatabaseRecruiterPostgre: berfungsi
+ * untuk meng-generate dan mengakses database berisi Recruiter Jobseeker yang
+ * ada
+ *
+ * @author Qisas Tazkia Hasanudin
+ * @version 1.0
+ */
 public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
-
+    // instance variable
     private static ArrayList<Recruiter> RECRUITER_DATABASE = new ArrayList<>();
 
+    /**
+     * method getRecruiterDatabase, berfungsi sebagai getter untuk mengambil list
+     * berisi semua objek yang berada di dalam database
+     *
+     * @return ArrayList<Recruiter> RECRUITER_DATABASE
+     */
     public static ArrayList<Recruiter> getRecruiterDatabase() {
         RECRUITER_DATABASE.clear();
         Connection c = connection();
@@ -46,6 +60,12 @@ public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
         return RECRUITER_DATABASE;
     }
 
+    /**
+     * method getLastId, berfungsi sebagai getter untuk mengambil id dari objek yang
+     * terakhir kali ditambahkan ke database
+     *
+     * @return int lastId
+     */
     public static int getLastId() {
         Connection c = connection();
         PreparedStatement stmt;
@@ -66,6 +86,13 @@ public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
         return id;
     }
 
+    /**
+     * method getRecruiterById, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan ID-nya
+     *
+     * @param id
+     * @return Recruiter recruiter
+     */
     public static Recruiter getRecruiterById(int recruiterId) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -103,6 +130,12 @@ public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
         return recruiter;
     }
 
+    /**
+     * method addRecruiter, berfungsi untuk menambah objek baru
+     *
+     * @param jobseeker
+     * @return Recruiter recruiter
+     */
     public static Recruiter addRecruiter(Recruiter recruiter) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -126,6 +159,13 @@ public class DatabaseRecruiterPostgre extends DatabaseConnectionPostgre {
         return recruiter;
     }
 
+    /**
+     * method removeRecruiter, berfungsi untuk menghapus salah satu objek
+     * berdasarkan ID-nya
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean removeRecruiter(int id) {
         Connection c = connection();
         PreparedStatement stmt;

@@ -6,10 +6,23 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Praktikum OOP - Program "JWork" - class DatabaseInvoicePostgre: berfungsi
+ * untuk meng-generate dan mengakses database berisi list Invoice yang ada
+ *
+ * @author Qisas Tazkia Hasanudin
+ * @version 1.0
+ */
 public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
-
+    // instance variable
     private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<>();
 
+    /**
+     * method getInvoiceDatabase, berfungsi sebagai getter untuk mengambil list
+     * berisi semua objek yang berada di dalam database
+     *
+     * @return ArrayList<Invoice> INVOICE_DATABASE
+     */
     public static ArrayList<Invoice> getInvoiceDatabase() {
         INVOICE_DATABASE.clear();
         Connection c = connection();
@@ -70,6 +83,12 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return INVOICE_DATABASE;
     }
 
+    /**
+     * method getLastId, berfungsi sebagai getter untuk mengambil id dari objek yang
+     * terakhir kali ditambahkan ke database
+     *
+     * @return int lastId
+     */
     public static int getLastId() {
         Connection c = connection();
         PreparedStatement stmt;
@@ -90,6 +109,13 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return id;
     }
 
+    /**
+     * method getInvoiceById, berfungsi sebagai getter untuk mengambil salah satu
+     * objek menggunakan ID-nya
+     *
+     * @param id
+     * @return Invoice result
+     */
     public static Invoice getInvoiceById(int id) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -146,6 +172,13 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return invoice;
     }
 
+    /**
+     * method getInvoiceByJobseeker, berfungsi sebagai getter untuk mengambil salah
+     * satu objek berdasarkan ID dari jobseeker yang memiliki invoice tersebut
+     *
+     * @param jobseekerId
+     * @return ArrayList<Invoice> result
+     */
     public static ArrayList<Invoice> getInvoiceByJobseeker(int jobseekerId) {
         INVOICE_DATABASE.clear();
         Connection c = connection();
@@ -204,6 +237,12 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return INVOICE_DATABASE;
     }
 
+    /**
+     * method addInvoice, berfungsi untuk menambah objek baru
+     *
+     * @param invoice
+     * @return Invoice invoice
+     */
     public static Invoice addInvoice(BankPayment invoice) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -238,6 +277,12 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return invoice;
     }
 
+    /**
+     * method addInvoice, berfungsi untuk menambah objek baru
+     *
+     * @param invoice
+     * @return Invoice invoice
+     */
     public static Invoice addInvoice(EwalletPayment invoice) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -260,9 +305,9 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
             stmt.setInt(5, invoice.getJobseeker().getId());
             stmt.setString(6, invoice.getInvoiceStatus().toString());
             stmt.setString(7, invoice.getPaymentType().toString());
-            if(invoice.getBonus() != null){
+            if (invoice.getBonus() != null) {
                 stmt.setString(8, invoice.getBonus().getReferralCode());
-            }else{
+            } else {
                 stmt.setString(8, null);
             }
 
@@ -276,6 +321,13 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return invoice;
     }
 
+    /**
+     * method changeInvoiceStatus, berfungsi untuk mengubah status dari invoice
+     *
+     * @param id
+     * @param invoiceStatus
+     * @return boolean
+     */
     public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus) {
         Connection c = connection();
         PreparedStatement stmt;
@@ -294,6 +346,13 @@ public class DatabaseInvoicePostgre extends DatabaseConnectionPostgre {
         return false;
     }
 
+    /**
+     * method removeInvoice, berfungsi untuk menghapus salah satu objek berdasarkan
+     * ID-nya
+     *
+     * @param id
+     * @return boolean
+     */
     public static boolean removeInvoice(int id) {
         Connection c = connection();
         PreparedStatement stmt;
