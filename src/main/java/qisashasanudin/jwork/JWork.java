@@ -4,6 +4,7 @@ import java.sql.*;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import qisashasanudin.jwork.database.postgre.DatabaseBonusPostgre;
 import qisashasanudin.jwork.database.postgre.DatabaseConnectionPostgre;
 
 /**
@@ -106,6 +107,9 @@ public class JWork {
                 // JobCategory.BackEnd,
                 // DatabaseRecruiterPostgre.getRecruiterById(1));
                 // DatabaseJobPostgre.addJob(job2);
+
+//                Bonus bonus1 = new Bonus(DatabaseBonusPostgre.getLastId()+1, "BONUS1", 5000, 7500000, true);
+//                DatabaseBonusPostgre.addBonus(bonus1);
 
                 SpringApplication.run(JWork.class, args);
         }
